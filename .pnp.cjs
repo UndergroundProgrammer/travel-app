@@ -29,7 +29,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@headlessui/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:1.7.8"],\
-            ["@heroicons/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:2.0.14"],\
             ["@material-tailwind/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:1.2.5"],\
             ["@next/font", "npm:13.1.6"],\
             ["autoprefixer", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:10.4.13"],\
@@ -39,7 +38,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:8.4.21"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:18.2.0"],\
-            ["react-icons", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:4.7.1"],\
             ["tailwindcss", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:3.2.4"]\
           ],\
           "linkType": "SOFT"\
@@ -198,28 +196,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react-dom",\
             "@types/react",\
             "react-dom",\
-            "react"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@heroicons/react", [\
-        ["npm:2.0.14", {\
-          "packageLocation": "./.yarn/cache/@heroicons-react-npm-2.0.14-86afe97808-d1623865c0.zip/node_modules/@heroicons/react/",\
-          "packageDependencies": [\
-            ["@heroicons/react", "npm:2.0.14"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:2.0.14", {\
-          "packageLocation": "./.yarn/__virtual__/@heroicons-react-virtual-cdd65bc00e/0/cache/@heroicons-react-npm-2.0.14-86afe97808-d1623865c0.zip/node_modules/@heroicons/react/",\
-          "packageDependencies": [\
-            ["@heroicons/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:2.0.14"],\
-            ["@types/react", null],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react",\
             "react"\
           ],\
           "linkType": "HARD"\
@@ -4044,28 +4020,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["react-icons", [\
-        ["npm:4.7.1", {\
-          "packageLocation": "./.yarn/cache/react-icons-npm-4.7.1-27c284b383-ed3cbdc5fc.zip/node_modules/react-icons/",\
-          "packageDependencies": [\
-            ["react-icons", "npm:4.7.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:4.7.1", {\
-          "packageLocation": "./.yarn/__virtual__/react-icons-virtual-a386ce642c/0/cache/react-icons-npm-4.7.1-27c284b383-ed3cbdc5fc.zip/node_modules/react-icons/",\
-          "packageDependencies": [\
-            ["react-icons", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:4.7.1"],\
-            ["@types/react", null],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react",\
-            "react"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
@@ -4683,7 +4637,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["travel-app", "workspace:."],\
             ["@headlessui/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:1.7.8"],\
-            ["@heroicons/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:2.0.14"],\
             ["@material-tailwind/react", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:1.2.5"],\
             ["@next/font", "npm:13.1.6"],\
             ["autoprefixer", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:10.4.13"],\
@@ -4693,7 +4646,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:8.4.21"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:18.2.0"],\
-            ["react-icons", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:4.7.1"],\
             ["tailwindcss", "virtual:2ff5f8fbabd9306485d8c867329245e0fa2191444d31775efb36b720e039f9ae496020822ca2bec51fb869b0cb6c730eebcb3607ee10011121fe8a239c147fda#npm:3.2.4"]\
           ],\
           "linkType": "SOFT"\

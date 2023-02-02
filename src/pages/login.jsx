@@ -2,17 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { DangerAlert, SuccessAlert } from "../components/Alert";
-
+import {
+  BeakerIcon,
+  EnvelopeIcon,
+  EyeIcon,
+  EyeSlashIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/solid";
 export default function Login() {
   const styles = {
     "underline-link":
       "underline underline-offset-4 hover:text-slate-700 focus:text-slate-700",
     "integration-link":
       "rounded-full border border-slate-300 hover:border-slate-500 focus:border-slate-500 p-4",
+    "visibility-icon": "absolute w-6 h-6 right-5 top-5 fill-slate-400",
   };
 
   const [loginData, setLoginData] = useState({});
-  const [loggedIn, setIsLoggedIn] = useState(false);
+  const [loggedIn, setIsLoggedIn] = useState(true);
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const handlePasswordVisibility = function () {
+    setPasswordVisibility((prev) => !prev);
+  };
   const handleLoginData = function (e) {
     const { name, value } = e.target;
     setLoginData((prev) => ({ ...prev, [name]: value }));
@@ -27,7 +38,6 @@ export default function Login() {
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 w-full relative text-slate-800">
         {/* {loggedIn ? <SuccessAlert /> : <DangerAlert />} */}
-
         <h1 className="text-3xl font-bold text-center">Welcome</h1>
         <div className="mb-12">
           <form onSubmit={(e) => handleLogin(e)}>
@@ -36,16 +46,8 @@ export default function Login() {
             </label>
 
             <div className="relative mb-6">
-              <div className="absolute inset-y-0 left-0 top-1.5 flex items-center pl-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 32 32"
-                  fill="currentColor"
-                  className="w-7 h-7 fill-slate-400"
-                >
-                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
-                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
-                </svg>
+              <div className="absolute inset-y-0 left-0 flex items-center ml-3">
+                <EnvelopeIcon className="w-6 h-6 fill-slate-400" />
               </div>
               <input
                 type="email"
@@ -63,22 +65,11 @@ export default function Login() {
               Password
             </label>
             <div className="relative mb-6">
-              <div className="absolute inset-y-0 left-0 top-1.5 flex items-center pl-3 pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 32 32"
-                  fill="currentColor"
-                  className="w-7 h-7 fill-slate-400"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <div className="absolute inset-y-0 left-0 -top-5 flex items-center ml-3 pointer-events-none">
+                <LockClosedIcon className="w-6 h-6 fill-slate-400" />
               </div>
               <input
-                type="password"
+                type={passwordVisibility ? "text" : "password"}
                 id="password"
                 name="password"
                 className={`input-field ${
@@ -88,6 +79,15 @@ export default function Login() {
                 onChange={handleLoginData}
                 required
               />
+              {passwordVisibility ? (
+                <button onClick={handlePasswordVisibility}>
+                  <EyeSlashIcon className={styles["visibility-icon"]} />
+                </button>
+              ) : (
+                <button onClick={handlePasswordVisibility}>
+                  <EyeIcon className={styles["visibility-icon"]} />
+                </button>
+              )}
             </div>
             <div className="relative mb-6 text-center underline underline-offset-4 text-blue-600 text-sm font-medium">
               <Link href="/">Forgot your password?</Link>
