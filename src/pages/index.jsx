@@ -127,10 +127,58 @@ export default function Home() {
                       </h2>
                     </div>
                   </div>
+                  <div className="relative min-w-[130px] rounded-md shadow-md">
+                    <Image
+                      src={"/images/hunza.jpg"}
+                      alt="Place"
+                      width={100}
+                      height={100}
+                      className="rounded-t-md w-full h-20 object-cover shadow-md"
+                    />
+                    <div className="flex justify-between mx-1">
+                      <div className="flex items-center my-1">
+                        <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                        <span className="text-xs">Iceland</span>
+                      </div>
+                      <div className="flex items-center my-1">
+                        <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                        <span className="text-xs">02.02.2023</span>
+                      </div>
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold text-slate-600 m-2">
+                        Sking Adventure
+                      </h2>
+                    </div>
+                  </div>
+                  <div className="relative min-w-[130px] rounded-md shadow-md">
+                    <Image
+                      src={"/images/hunza.jpg"}
+                      alt="Place"
+                      width={100}
+                      height={100}
+                      className="rounded-t-md w-full h-20 object-cover shadow-md"
+                    />
+                    <div className="flex justify-between mx-1">
+                      <div className="flex items-center my-1">
+                        <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                        <span className="text-xs">Iceland</span>
+                      </div>
+                      <div className="flex items-center my-1">
+                        <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                        <span className="text-xs">02.02.2023</span>
+                      </div>
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold text-slate-600 m-2">
+                        Sking Adventure
+                      </h2>
+                    </div>
+                  </div>
                 </div>
               </div>
               {/* User Nav */}
-              <div className="container max-w-md fixed w-full p-5 shadow-md bottom-0 bg-white">
+              <div className="container max-w-md fixed w-full p-5 text-slate-600 shadow-md bottom-0 bg-white">
                 <nav className="flex justify-between items-center text-center">
                   <Link href={"/"}>
                     <HomeIcon className="w-6 h-6 mx-auto fill-slate-600" />
