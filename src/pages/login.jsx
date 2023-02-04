@@ -3,11 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { DangerAlert, SuccessAlert } from "../components/Alert";
 import {
-  BeakerIcon,
   EnvelopeIcon,
   EyeIcon,
   EyeSlashIcon,
   LockClosedIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/24/solid";
 export default function Login() {
   const styles = {
@@ -30,13 +30,12 @@ export default function Login() {
   };
   const handleLogin = function (e) {
     e.preventDefault();
-    console.log("Login Clicked");
-    console.log(loginData);
+    console.log("You Entered:", loginData);
   };
 
   return (
     <div className="container max-w-md mx-auto flex items-center">
-      <div className="m-5 w-full relative text-slate-800">
+      <div className="m-5 mt-20 w-full relative text-slate-800">
         {/* {loggedIn ? <SuccessAlert /> : <DangerAlert />} */}
         <h1 className="text-3xl font-bold text-center">Welcome</h1>
         <div className="mb-12">
@@ -60,6 +59,7 @@ export default function Login() {
                 onChange={handleLoginData}
                 required
               />
+              {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
             </div>
             <label htmlFor="email" className="text-sm">
               Password
@@ -79,6 +79,7 @@ export default function Login() {
                 onChange={handleLoginData}
                 required
               />
+              {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
               {passwordVisibility ? (
                 <button onClick={handlePasswordVisibility}>
                   <EyeSlashIcon className={styles["visibility-icon"]} />
@@ -96,8 +97,8 @@ export default function Login() {
               disabled={loginData?.email && loginData?.password ? false : true}
               className={`btn-primary mb-6 ${
                 loginData?.email && loginData?.password
-                  ? "pointer-events-auto bg-blue-500 text-white"
-                  : "pointer-events-none bg-gray-300 text-gray-500"
+                  ? "pointer-events-auto bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white"
+                  : "pointer-events-none bg-slate-300 text-slate-500"
               }`}
             >
               Login
