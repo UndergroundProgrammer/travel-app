@@ -93,7 +93,7 @@ export default function Home() {
               </div>
 
               {/* Latest Posts */}
-              <div className="relative m-5">
+              <div className="relative m-5 mb-20">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-bold text-slate-600 my-2">
                     Latest Posts
@@ -102,8 +102,8 @@ export default function Home() {
                     See All
                   </button>
                 </div>
-                <div className="max-w-full sticky top-0 grid grid-cols-2 gap-4">
-                  <div className="relative min-w-[170px] rounded-md shadow-md">
+                <div className="w-full grid grid-cols-2 gap-4">
+                  <div className="relative min-w-[130px] rounded-md shadow-md">
                     <Image
                       src={"/images/hunza.jpg"}
                       alt="Place"
@@ -113,83 +113,11 @@ export default function Home() {
                     />
                     <div className="flex justify-between mx-1">
                       <div className="flex items-center my-1">
-                        <MapPinIcon className="w-6 h-6 mr-1 fill-slate-700" />
+                        <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
                         <span className="text-xs">Iceland</span>
                       </div>
                       <div className="flex items-center my-1">
-                        <ClockIcon className="w-6 h-6 mr-1 fill-slate-700" />
-                        <span className="text-xs">02.02.2023</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-slate-600 m-2">
-                        Sking Adventure
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="relative min-w-[170px] rounded-md shadow-md">
-                    <Image
-                      src={"/images/hunza.jpg"}
-                      alt="Place"
-                      width={100}
-                      height={100}
-                      className="rounded-t-md w-full h-20 object-cover shadow-md"
-                    />
-                    <div className="flex justify-between mx-1">
-                      <div className="flex items-center my-1">
-                        <MapPinIcon className="w-6 h-6 mr-1 fill-slate-700" />
-                        <span className="text-xs">Iceland</span>
-                      </div>
-                      <div className="flex items-center my-1">
-                        <ClockIcon className="w-6 h-6 mr-1 fill-slate-700" />
-                        <span className="text-xs">02.02.2023</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-slate-600 m-2">
-                        Sking Adventure
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="relative min-w-[170px] rounded-md shadow-md">
-                    <Image
-                      src={"/images/hunza.jpg"}
-                      alt="Place"
-                      width={100}
-                      height={100}
-                      className="rounded-t-md w-full h-20 object-cover shadow-md"
-                    />
-                    <div className="flex justify-between mx-1">
-                      <div className="flex items-center my-1">
-                        <MapPinIcon className="w-6 h-6 mr-1 fill-slate-700" />
-                        <span className="text-xs">Iceland</span>
-                      </div>
-                      <div className="flex items-center my-1">
-                        <ClockIcon className="w-6 h-6 mr-1 fill-slate-700" />
-                        <span className="text-xs">02.02.2023</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-slate-600 m-2">
-                        Sking Adventure
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="relative min-w-[170px] rounded-md shadow-md">
-                    <Image
-                      src={"/images/hunza.jpg"}
-                      alt="Place"
-                      width={100}
-                      height={100}
-                      className="rounded-t-md w-full h-20 object-cover shadow-md"
-                    />
-                    <div className="flex justify-between mx-1">
-                      <div className="flex items-center my-1">
-                        <MapPinIcon className="w-6 h-6 mr-1 fill-slate-700" />
-                        <span className="text-xs">Iceland</span>
-                      </div>
-                      <div className="flex items-center my-1">
-                        <ClockIcon className="w-6 h-6 mr-1 fill-slate-700" />
+                        <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
                         <span className="text-xs">02.02.2023</span>
                       </div>
                     </div>
@@ -213,7 +141,7 @@ export default function Home() {
                     <span className="font-medium text-sm">Activitys</span>
                   </Link>
                   <Link href={"/"}>
-                    <PlusIcon className="w-8 h-8  mx-auto stroke-2 stroke-blue-600 " />
+                    <PlusIcon className="w-8 h-8  mx-auto stroke-[3] stroke-blue-600 " />
                   </Link>
                   <Link href={"/chat"}>
                     <EnvelopeIcon className="w-6 h-6  mx-auto fill-slate-600" />
