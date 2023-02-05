@@ -31,7 +31,9 @@ body {
 .active svg {
   @apply fill-blue-600;
 }
-
+.active span {
+  @apply text-blue-600;
+}
 .hero-background {
   background: url("/hero-bg.jpg");
   background-repeat: no-repeat;

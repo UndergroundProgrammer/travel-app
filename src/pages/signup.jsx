@@ -18,7 +18,7 @@ export default function Signup() {
   const [formStep, setFormStep] = useState(1);
   const router = useRouter();
 
-  // console.log(formStep);
+  console.log(formStep);
   const nextStep = () => {
     setFormStep((prev) => prev + 1);
   };
@@ -42,17 +42,18 @@ export default function Signup() {
   const handleFormSubmit = function () {
     console.log("Your Information :", signupData);
   };
+
   return (
     <>
-      <div className="container max-w-md mx-auto flex items-center overflow-hidden">
-        <div className="m-5 mt-20 w-full relative text-slate-800">
+      <div className="container max-w-md mx-auto flex items-center">
+        <div className="m-5 mt-20 w-full text-slate-800 ">
           <div className="font-medium flex gap-4">
             <button onClick={handleBackButton}>
               <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
             </button>
             <span>Create Account</span>
           </div>
-          <div>
+          <div className="relative">
             <h1 className={`text-3xl font-bold my-12 text-center`}>
               {(formStep === 1 && "Enter your Email") ||
                 (formStep === 2 && "Select a Username") ||
@@ -61,55 +62,89 @@ export default function Signup() {
             </h1>
             <form className="overflow-hidden">
               <div
-                className={`w-full absolute translate-x-full transition duration-300 ease-in-out ${
+                className={`w-full absolute top-20 translate-x-full transition duration-300 ease-in-out ${
                   (formStep === 1 && "translate-x-0") ||
-                  (formStep >= 1 && "-translate-x-full invisible")
+                  (formStep >= 1 && "-translate-x-full hidden")
                 }`}
               >
-                <label htmlFor="email" className="text-sm">
-                  Enter Email
-                </label>
-                <div className="relative mb-6">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className={`input-field`}
-                    placeholder="someone@example.com"
-                    onChange={handleSignupData}
-                    required
-                  />
-                  {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
+                <div className="mb-6">
+                  <label htmlFor="email" className="text-sm">
+                    Enter Email
+                  </label>
+                  <div className="relative mb-6">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className={`input-field`}
+                      placeholder="someone@example.com"
+                      onChange={handleSignupData}
+                      required
+                    />
+                    {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
+                  </div>
+                  <label htmlFor="username" className="text-sm">
+                    Enter Username
+                  </label>
+                  <div className="relative mb-6">
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      className={`input-field`}
+                      placeholder="@user"
+                      onChange={handleSignupData}
+                      required
+                    />
+                    {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
+                  </div>
                 </div>
               </div>
               <div
-                className={`w-full absolute translate-x-full transition duration-300 ease-in-out ${
+                className={`w-full absolute top-20 translate-x-full transition duration-300 ease-in-out ${
                   (formStep === 2 && "translate-x-0") ||
-                  (formStep >= 2 && "-translate-x-full invisible") ||
-                  (formStep <= 2 && "translate-x-full invisible")
+                  (formStep >= 2 && "-translate-x-full hidden") ||
+                  (formStep <= 2 && "translate-x-full hidden")
                 }`}
               >
-                <label htmlFor="username" className="text-sm">
-                  Enter Username
-                </label>
-                <div className="relative mb-6">
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    className={`input-field`}
-                    placeholder="@user"
-                    onChange={handleSignupData}
-                    required
-                  />
-                  {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
+                <div className="mb-6">
+                  <label htmlFor="password" className="text-sm">
+                    Enter Password
+                  </label>
+                  <div className="relative mb-6">
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      className={`input-field`}
+                      placeholder="Enter new Password"
+                      onChange={handleSignupData}
+                      required
+                    />
+                    {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
+                  </div>
+                  <label htmlFor="confirmPass" className="text-sm">
+                    Confirm Password
+                  </label>
+                  <div className="relative mb-6">
+                    <input
+                      type="password"
+                      id="confirmPass"
+                      name="confimPass"
+                      className={`input-field }`}
+                      placeholder="Confirm new Password"
+                      onChange={handleSignupData}
+                      required
+                    />
+                    {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
+                  </div>
                 </div>
               </div>
               <div
-                className={`w-full absolute transition duration-300 ease-in-out ${
+                className={`w-full absolute top-20 transition duration-300 ease-in-out ${
                   (formStep === 3 && "translate-x-0") ||
-                  (formStep >= 3 && "-translate-x-full invisible") ||
-                  (formStep <= 3 && "translate-x-full invisible")
+                  (formStep >= 3 && "-translate-x-full hidden") ||
+                  (formStep <= 3 && "translate-x-full hidden")
                 }`}
               >
                 <label htmlFor="dob" className="text-sm">
@@ -129,9 +164,9 @@ export default function Signup() {
                 </div>
               </div>
               <div
-                className={`w-full absolute transition duration-300 ease-in-out ${
+                className={`w-full absolute top-20 transition duration-300 ease-in-out ${
                   (formStep === 4 && "translate-x-0") ||
-                  (formStep <= 4 && "translate-x-full invisible")
+                  (formStep <= 4 && "translate-x-full hidden")
                 }`}
               >
                 <div className="relative inline-flex gap-4 items-center mb-6">
@@ -149,9 +184,57 @@ export default function Signup() {
                 </div>
               </div>
               <button
-                disabled={signupData?.email ? false : true}
+                disabled={
+                  signupData?.email && signupData?.username ? false : true
+                }
+                type="button"
                 className={`btn-primary mt-48 mb-6 ${
-                  signupData?.email
+                  formStep === 1 ? "block" : "hidden"
+                } ${
+                  signupData?.email && signupData?.username
+                    ? styles["btn-active"]
+                    : styles["btn-disabled"]
+                } `}
+                onClick={handleNextButton}
+              >
+                Next
+              </button>
+              <button
+                type="button"
+                disabled={
+                  signupData?.password && signupData?.confirmPass ? false : true
+                }
+                className={`btn-primary mt-48 mb-6 ${
+                  formStep === 2 ? "block" : "hidden"
+                } ${
+                  signupData?.password && signupData?.confirmPass
+                    ? styles["btn-active"]
+                    : styles["btn-disabled"]
+                } `}
+                onClick={handleNextButton}
+              >
+                Next
+              </button>
+              <button
+                type="button"
+                disabled={signupData?.dob ? false : true}
+                className={`btn-primary mt-48 mb-6 ${
+                  formStep === 3 ? "block" : "hidden"
+                } ${
+                  signupData?.dob
+                    ? styles["btn-active"]
+                    : styles["btn-disabled"]
+                } `}
+                onClick={handleNextButton}
+              >
+                Next
+              </button>
+              <button
+                type="button"
+                className={`btn-primary mt-48 mb-6 ${
+                  formStep === 4 ? "block" : "hidden"
+                } ${
+                  signupData?.dob
                     ? styles["btn-active"]
                     : styles["btn-disabled"]
                 } `}
@@ -160,6 +243,18 @@ export default function Signup() {
                 Next
               </button>
             </form>
+
+            <div className="m-4">
+              <div className="text-sm my-1">Step {formStep}/4</div>
+              <div
+                className={`rounded-full transition-all duration-300 ease-out bg-blue-600 p-1 ${
+                  (formStep === 1 && "w-1/4") ||
+                  (formStep === 2 && "w-2/4") ||
+                  (formStep === 3 && "w-3/4") ||
+                  (formStep === 4 && "w-full")
+                }`}
+              ></div>
+            </div>
           </div>
         </div>
       </div>
