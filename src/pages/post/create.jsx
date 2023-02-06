@@ -80,6 +80,7 @@ export default function Create() {
                 required
               >
                 <option value="vacation">Vacation</option>
+                <option value="business_trip">Buiness Trip</option>
               </select>
               {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
             </div>
