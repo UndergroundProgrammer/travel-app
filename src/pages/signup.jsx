@@ -130,7 +130,7 @@ export default function Signup() {
                     <input
                       type="password"
                       id="confirmPass"
-                      name="confimPass"
+                      name="confirmPass"
                       className={`input-field }`}
                       placeholder="Confirm new Password"
                       onChange={handleSignupData}
@@ -169,18 +169,21 @@ export default function Signup() {
                   (formStep <= 4 && "translate-x-full hidden")
                 }`}
               >
-                <div className="relative inline-flex gap-4 items-center mb-6">
-                  <input
-                    type="checkbox"
-                    id="agreement"
-                    name="agreement"
-                    className="h-5 w-5"
-                    onChange={handleSignupData}
-                    required
-                  />
-                  <label htmlFor="dob" className="text-sm">
-                    Do you agree to our terms of service and privacy policy
-                  </label>
+                <div className="relative mb-6">
+                  By Signing up you agree to our{" "}
+                  <Link
+                    href={"/terms"}
+                    className="underline underline-offset-4 hover:text-slate-700 focus:text-slate-700"
+                  >
+                    terms and conditions
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href={"/privacy"}
+                    className="underline underline-offset-4 hover:text-slate-700 focus:text-slate-700"
+                  >
+                    privacy policy
+                  </Link>
                 </div>
               </div>
               <button
@@ -202,12 +205,18 @@ export default function Signup() {
               <button
                 type="button"
                 disabled={
-                  signupData?.password && signupData?.confirmPass ? false : true
+                  signupData?.password?.length > 0 &&
+                  signupData?.confirmPass?.length > 0 &&
+                  signupData?.password === signupData?.confirmPass
+                    ? false
+                    : true
                 }
                 className={`btn-primary mt-48 mb-6 ${
                   formStep === 2 ? "block" : "hidden"
                 } ${
-                  signupData?.password && signupData?.confirmPass
+                  signupData?.password?.length > 0 &&
+                  signupData?.confirmPass?.length > 0 &&
+                  signupData?.password === signupData?.confirmPass
                     ? styles["btn-active"]
                     : styles["btn-disabled"]
                 } `}
@@ -230,17 +239,13 @@ export default function Signup() {
                 Next
               </button>
               <button
-                type="button"
-                className={`btn-primary mt-48 mb-6 ${
+                type="submit"
+                className={`btn-primary mt-48 mb-6 ${styles["btn-active"]} ${
                   formStep === 4 ? "block" : "hidden"
-                } ${
-                  signupData?.dob
-                    ? styles["btn-active"]
-                    : styles["btn-disabled"]
-                } `}
+                }`}
                 onClick={handleFormSubmit}
               >
-                Next
+                Submit
               </button>
             </form>
 
