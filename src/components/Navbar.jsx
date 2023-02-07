@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const router = useRouter();
   return (
     <div className="container max-w-md fixed w-full p-5 text-slate-600 shadow-md bottom-0 bg-white">
@@ -24,7 +26,10 @@ export default function Navbar() {
           <MapIcon className="w-6 h-6  mx-auto fill-slate-600" />
           <span className="font-medium text-sm">Activitys</span>
         </Link>
-        <Link href={"/"} className={router.pathname === "/" ? "active" : ""}>
+        <Link
+          href={isLoggedIn ? "/post/create" : "/login"}
+          className={router.pathname === "/" ? "active" : ""}
+        >
           <PlusIcon className="w-8 h-8  mx-auto stroke-[3] stroke-blue-600 " />
         </Link>
         <Link
