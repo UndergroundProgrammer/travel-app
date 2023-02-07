@@ -8,7 +8,9 @@ import {
   EyeSlashIcon,
   LockClosedIcon,
   InformationCircleIcon,
+  ArrowSmallLeftIcon,
 } from "@heroicons/react/24/solid";
+import Navbar from "../components/Navbar";
 export default function Login() {
   const styles = {
     "underline-link":
@@ -36,6 +38,12 @@ export default function Login() {
   return (
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 mt-20 w-full relative text-slate-800">
+        <div className="font-medium flex gap-4">
+          <Link href={"/"}>
+            <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
+          </Link>
+          <span>Login</span>
+        </div>
         {/* {loggedIn ? <SuccessAlert /> : <DangerAlert />} */}
         <h1 className="text-3xl font-bold text-center">Welcome</h1>
         <div className="mb-12">
@@ -149,6 +157,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <Navbar />
     </div>
   );
 }
