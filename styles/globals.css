@@ -34,6 +34,15 @@ body {
 .active span {
   @apply text-blue-600;
 }
+
+.styled-label input[type="radio"] ~ span {
+  @apply bg-slate-100 rounded-full mx-2 py-2 px-4 text-blue-800;
+}
+
+.styled-label input[type="radio"]:checked ~ span {
+  @apply bg-blue-200 rounded-full mx-2 py-2 px-4 text-blue-800;
+}
+
 .hero-background {
   background: url("/hero-bg.jpg");
   background-repeat: no-repeat;

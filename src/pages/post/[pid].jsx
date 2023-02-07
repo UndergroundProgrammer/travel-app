@@ -1,3 +1,4 @@
+import { distDir } from "@/next.config";
 import { Switch } from "@headlessui/react";
 import { ArrowUpIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -9,8 +10,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-
-export default function Create() {
+export default function PID() {
   const [tripData, setTripData] = useState({});
   const [girlsOnly, setGirlsOnly] = useState(false);
   const router = useRouter();
@@ -58,7 +58,7 @@ export default function Create() {
           <Link href={"/activitys"}>
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
           </Link>
-          <span>New Trip</span>
+          <span>Edit Trip</span>
         </div>
         <div className="my-12">
           <form onSubmit={handleTripSubmit}>
