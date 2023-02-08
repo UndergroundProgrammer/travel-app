@@ -3,6 +3,9 @@ import "swiper/css";
 import Image from "next/image";
 import {
   ArrowSmallLeftIcon,
+  BuildingOffice2Icon,
+  BuildingOfficeIcon,
+  CheckBadgeIcon,
   ClockIcon,
   HeartIcon,
   MapPinIcon,
@@ -17,8 +20,9 @@ export default function PostDetails() {
   const router = useRouter();
   return (
     <div className="container max-w-md mx-auto overflow-hidden text-slate-800">
+      {/* Photos Swiper */}
       <div className="w-full relative">
-        <div className="font-medium flex gap-4 absolute bg-white p-2 z-10 top-10 left-5 rounded-lg">
+        <div className="font-medium flex gap-4 w-1/3 text-sm absolute bg-white p-2 z-10 top-10 left-5 rounded-lg">
           <button onClick={() => router.back()}>
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
           </button>
@@ -70,6 +74,7 @@ export default function PostDetails() {
           </SwiperSlide>
         </Swiper>
       </div>
+      {/* Trip Shallow Info */}
       <div className="m-5 text-slate-800 ">
         <div className="flex justify-between items-center">
           <div>
@@ -93,6 +98,7 @@ export default function PostDetails() {
             />
           </div>
         </div>
+        {/* About Trip */}
         <div className="my-5">
           <h3 className="text-lg font-bold my-2">About the trip</h3>
           <p>
@@ -102,6 +108,47 @@ export default function PostDetails() {
             explicabo.
           </p>
         </div>
+        {/* Facts */}
+        <div className="my-5">
+          <h3 className="text-lg font-bold my-2">Facts</h3>
+          <div className="flex gap-2">
+            {/* Fact */}
+            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-300">
+              <ClockIcon className="h-8 w-8 fill-slate-800 mx-auto" />
+              <span>08.02.2023 to 09.02.2023</span>
+            </div>
+            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-300">
+              <BuildingOfficeIcon className="h-8 w-8 fill-slate-800 mx-auto" />
+              <span>Stay in Hotel</span>
+            </div>
+
+            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-300">
+              <CheckBadgeIcon className="h-8 w-8 fill-slate-800 mx-auto" />
+              <span>Vacation</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="my-5">
+          <h3 className="text-lg font-bold my-2">About tripmate</h3>
+          <Link href={"/userDetails"}>
+            <div className=" flex gap-2">
+              <Image
+                src={"/images/hunza.jpg"}
+                width={100}
+                height={100}
+                className=" self-start object-cover rounded-full aspect-square"
+                alt="Trip Mate"
+              />
+              <div>
+                <h4 className="text-xl font-bold">Jenny</h4>
+                <h4>28 years old</h4>
+                <h4>Hamburg Germany</h4>
+              </div>
+            </div>
+          </Link>
+        </div>
+
         <Link
           href={"/chat/chatId"}
           className={`block mx-auto w-3/5 text-center rounded-full p-3 font-medium text-lg mt-8 mb-24  pointer-events-auto bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:outline-none text-white`}
