@@ -22,7 +22,7 @@ export default function PostDetails() {
     <div className="container max-w-md mx-auto overflow-hidden text-slate-800">
       {/* Photos Swiper */}
       <div className="w-full relative">
-        <div className="font-medium flex gap-4 w-1/3 text-sm absolute bg-white p-2 z-10 top-10 left-5 rounded-lg">
+        <div className="font-medium flex gap-4 text-sm absolute bg-white p-2 z-10 top-10 left-5 rounded-lg">
           <button onClick={() => router.back()}>
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
           </button>
@@ -113,16 +113,16 @@ export default function PostDetails() {
           <h3 className="text-lg font-bold my-2">Facts</h3>
           <div className="flex gap-2">
             {/* Fact */}
-            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-300">
+            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-200">
               <ClockIcon className="h-8 w-8 fill-slate-800 mx-auto" />
               <span>08.02.2023 to 09.02.2023</span>
             </div>
-            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-300">
+            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-200">
               <BuildingOfficeIcon className="h-8 w-8 fill-slate-800 mx-auto" />
               <span>Stay in Hotel</span>
             </div>
 
-            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-300">
+            <div className="p-4 w-1/3 text-sm rounded-lg text-center bg-slate-200">
               <CheckBadgeIcon className="h-8 w-8 fill-slate-800 mx-auto" />
               <span>Vacation</span>
             </div>
@@ -131,12 +131,12 @@ export default function PostDetails() {
 
         <div className="my-5">
           <h3 className="text-lg font-bold my-2">About tripmate</h3>
-          <Link href={"/userDetails"}>
+          <Link href={"/tripmate"}>
             <div className=" flex gap-2">
               <Image
                 src={"/images/hunza.jpg"}
-                width={100}
-                height={100}
+                width={80}
+                height={80}
                 className=" self-start object-cover rounded-full aspect-square"
                 alt="Trip Mate"
               />
