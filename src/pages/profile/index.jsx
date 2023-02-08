@@ -1,4 +1,9 @@
-import { ArrowSmallLeftIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowSmallLeftIcon,
+  KeyIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,7 +14,7 @@ export default function Profile() {
   return (
     <>
       <div className="container max-w-md mx-auto flex items-center">
-        <div className="m-5 mt-20 w-full relative text-slate-800">
+        <div className="m-5 my-20 w-full relative text-slate-800">
           <div className="font-medium flex gap-4">
             <button onClick={() => router.back()}>
               <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
@@ -51,7 +56,54 @@ export default function Profile() {
             <h3 className="text-lg font-bold text-slate-600 my-2">
               Basic Information
             </h3>
+            <div className="relative my-5">
+              <Link href={"/profile/edit?type=text&name=name"}>
+                <span className="text-xs">Name</span>
+                <div className="flex items-center justify-between border-b border-b-gray-400">
+                  <p className="py-4">Jenny</p>
+                  <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
+                </div>
+              </Link>
+            </div>
+            <div className="relative my-5">
+              <Link href={"/profile/edit?type=text&name=about"}>
+                <span className="text-xs">Bio</span>
+                <div className="flex items-center justify-between border-b border-b-gray-400">
+                  <p className="py-4">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Expedita voluptatum eaque aperiam, aliquid id placeat harum
+                    autem similique distinctio omnis.
+                  </p>
+                  <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
+                </div>
+              </Link>
+            </div>
+            <div className="relative my-5">
+              <Link href={"/profile/edit?type=text&name=location"}>
+                <span className="text-xs">Location</span>
+                <div className="flex items-center justify-between border-b border-b-gray-400">
+                  <p className="py-4">Hamburg, Germany</p>
+                  <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
+                </div>
+              </Link>
+            </div>
+            <h3 className="text-lg font-bold text-slate-600 my-2">Security</h3>
+            <div className="relative my-5">
+              <Link href={"/profile/edit?type=password&name=password"}>
+                <span className="text-xs">Password</span>
+                <div className="flex items-center justify-between border-b border-b-gray-400">
+                  <p className="py-4">Change Password</p>
+                  <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
+                </div>
+              </Link>
+            </div>
           </div>
+          <button
+            className={`btn-primary mb-6 bg-red-600 text-white  inline-flex gap-2 items-center justify-center`}
+          >
+            <KeyIcon className="w-6 h-6 stroke-2 fill-white" />
+            <span>Logout</span>
+          </button>
         </div>
         <Navbar />
       </div>
