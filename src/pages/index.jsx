@@ -48,116 +48,114 @@ export default function Home() {
               </div>
             </div>
 
-            <div>
-              {/* Popular Destinations */}
+            {/* Popular Destinations */}
 
-              <div className="relative m-5">
-                <h3 className="text-lg font-bold text-slate-600 my-2">
-                  Popular Destinations
-                </h3>
-                <div className="max-w-full flex gap-2 justify-between overflow-x-auto">
-                  <div className=" min-w-[150px]">
-                    <Image
-                      src={"/images/uppsala.jpg"}
-                      alt="Place"
-                      width={170}
-                      height={150}
-                      className="rounded-md shadow-md"
-                    />
-                    <div className="p-3 mx-2 rounded-md shadow-md  -translate-y-4 bg-white border text-center">
-                      <span>Uppsala</span>
-                    </div>
+            <div className="relative m-5">
+              <h3 className="text-lg font-bold text-slate-600 my-2">
+                Popular Destinations
+              </h3>
+              <div className="max-w-full flex gap-2 justify-between overflow-x-auto">
+                <div className=" min-w-[150px]">
+                  <Image
+                    src={"/images/uppsala.jpg"}
+                    alt="Place"
+                    width={170}
+                    height={150}
+                    className="rounded-md shadow-md"
+                  />
+                  <div className="p-3 mx-2 rounded-md shadow-md  -translate-y-4 bg-white border text-center">
+                    <span>Uppsala</span>
                   </div>
-                  <div className=" min-w-[150px]">
-                    <Image
-                      src={"/images/fuji.jpg"}
-                      alt="Place"
-                      width={170}
-                      height={150}
-                      className="rounded-md shadow-md"
-                    />
-                    <div className="p-3 mx-2 rounded-md shadow-md  -translate-y-4 bg-white border text-center">
-                      <span>Fuji</span>
-                    </div>
+                </div>
+                <div className=" min-w-[150px]">
+                  <Image
+                    src={"/images/fuji.jpg"}
+                    alt="Place"
+                    width={170}
+                    height={150}
+                    className="rounded-md shadow-md"
+                  />
+                  <div className="p-3 mx-2 rounded-md shadow-md  -translate-y-4 bg-white border text-center">
+                    <span>Fuji</span>
                   </div>
-                  <div className=" min-w-[150px]">
-                    <Image
-                      src={"/images/hunza.jpg"}
-                      alt="Place"
-                      width={170}
-                      height={150}
-                      className="rounded-md shadow-md"
-                    />
-                    <div className="p-3 mx-2 rounded-md shadow-md  -translate-y-4 bg-white border text-center">
-                      <span>Hunza</span>
-                    </div>
+                </div>
+                <div className=" min-w-[150px]">
+                  <Image
+                    src={"/images/hunza.jpg"}
+                    alt="Place"
+                    width={170}
+                    height={150}
+                    className="rounded-md shadow-md"
+                  />
+                  <div className="p-3 mx-2 rounded-md shadow-md  -translate-y-4 bg-white border text-center">
+                    <span>Hunza</span>
                   </div>
                 </div>
               </div>
-
-              {/* Latest Posts */}
-              <div className="relative m-5 mb-20">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-slate-600 my-2">
-                    Latest Posts
-                  </h3>
-                  <button className="text-blue-500 text-sm font-medium">
-                    See All
-                  </button>
-                </div>
-                <div className="w-full grid grid-cols-2 gap-4">
-                  <div className="relative min-w-[130px] rounded-md shadow-md">
-                    <Image
-                      src={"/images/hunza.jpg"}
-                      alt="Place"
-                      width={100}
-                      height={100}
-                      className="rounded-t-md w-full h-20 object-cover shadow-md"
-                    />
-                    <div className="flex justify-between mx-1">
-                      <div className="flex items-center my-1">
-                        <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                        <span className="text-xs">Iceland</span>
-                      </div>
-                      <div className="flex items-center my-1">
-                        <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                        <span className="text-xs">02.02.2023</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-slate-600 m-2">
-                        Sking Adventure
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="relative min-w-[130px] rounded-md shadow-md">
-                    <Image
-                      src={"/images/hunza.jpg"}
-                      alt="Place"
-                      width={100}
-                      height={100}
-                      className="rounded-t-md w-full h-20 object-cover shadow-md"
-                    />
-                    <div className="flex justify-between mx-1">
-                      <div className="flex items-center my-1">
-                        <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                        <span className="text-xs">Iceland</span>
-                      </div>
-                      <div className="flex items-center my-1">
-                        <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                        <span className="text-xs">02.02.2023</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-slate-600 m-2">
-                        Sking Adventure
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <Navbar />
             </div>
+
+            {/* Latest Posts */}
+            <div className="relative m-5 mb-20">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-bold text-slate-600 my-2">
+                  Latest Posts
+                </h3>
+                <button className="text-blue-500 text-sm font-medium">
+                  See All
+                </button>
+              </div>
+              <div className="w-full grid grid-cols-2 gap-4">
+                <div className="relative min-w-[130px] rounded-md shadow-md">
+                  <Image
+                    src={"/images/hunza.jpg"}
+                    alt="Place"
+                    width={100}
+                    height={100}
+                    className="rounded-t-md w-full h-20 object-cover shadow-md"
+                  />
+                  <div className="flex justify-between mx-1">
+                    <div className="flex items-center my-1">
+                      <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                      <span className="text-xs">Iceland</span>
+                    </div>
+                    <div className="flex items-center my-1">
+                      <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                      <span className="text-xs">02.02.2023</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-bold text-slate-600 m-2">
+                      Sking Adventure
+                    </h2>
+                  </div>
+                </div>
+                <div className="relative min-w-[130px] rounded-md shadow-md">
+                  <Image
+                    src={"/images/hunza.jpg"}
+                    alt="Place"
+                    width={100}
+                    height={100}
+                    className="rounded-t-md w-full h-20 object-cover shadow-md"
+                  />
+                  <div className="flex justify-between mx-1">
+                    <div className="flex items-center my-1">
+                      <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                      <span className="text-xs">Iceland</span>
+                    </div>
+                    <div className="flex items-center my-1">
+                      <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                      <span className="text-xs">02.02.2023</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-bold text-slate-600 m-2">
+                      Sking Adventure
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Navbar />
           </div>
         </div>
       </main>

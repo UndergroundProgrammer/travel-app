@@ -15,7 +15,7 @@ export default function Chat() {
         {/* Not Logged In */}
         {/* <Login /> */}
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </div>
   );
 }
