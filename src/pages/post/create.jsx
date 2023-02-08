@@ -55,9 +55,9 @@ export default function Create() {
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 mt-20 w-full text-slate-800 ">
         <div className="font-medium flex gap-4">
-          <Link href={"/activitys"}>
+          <button onClick={() => router.back()}>
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
-          </Link>
+          </button>
           <span>New Trip</span>
         </div>
         <div className="my-12">

@@ -1,17 +1,19 @@
 import { ArrowSmallLeftIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
+import Navbar from "../../components/Navbar";
 
 export default function Profile() {
+  const router = useRouter();
   return (
     <>
       <div className="container max-w-md mx-auto flex items-center">
         <div className="m-5 mt-20 w-full relative text-slate-800">
           <div className="font-medium flex gap-4">
-            <Link href={"/"}>
+            <button onClick={() => router.back()}>
               <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
-            </Link>
+            </button>
             <span>Edit Profile</span>
           </div>
           <div className="w-full rounded-lg p-8 mt-8 bg-blue-600 text-center">

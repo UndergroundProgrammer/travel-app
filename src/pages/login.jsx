@@ -11,6 +11,7 @@ import {
   ArrowSmallLeftIcon,
 } from "@heroicons/react/24/solid";
 import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
 export default function Login() {
   const styles = {
     "underline-link":
@@ -19,6 +20,7 @@ export default function Login() {
       "rounded-full border border-slate-300 hover:border-slate-500 focus:border-slate-500 p-4",
     "visibility-icon": "absolute w-6 h-6 right-5 top-5 fill-slate-400",
   };
+  const router = useRouter();
 
   const [loginData, setLoginData] = useState({});
   const [loggedIn, setIsLoggedIn] = useState(true);
@@ -39,9 +41,9 @@ export default function Login() {
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 mt-20 w-full relative text-slate-800">
         <div className="font-medium flex gap-4">
-          <Link href={"/"}>
+          <button onClick={() => router.back()}>
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
-          </Link>
+          </button>
           <span>Login</span>
         </div>
         {/* {loggedIn ? <SuccessAlert /> : <DangerAlert />} */}

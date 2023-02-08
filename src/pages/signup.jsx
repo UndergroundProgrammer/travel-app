@@ -18,7 +18,6 @@ export default function Signup() {
   const [formStep, setFormStep] = useState(1);
   const router = useRouter();
 
-  console.log(formStep);
   const nextStep = () => {
     setFormStep((prev) => prev + 1);
   };
@@ -27,7 +26,7 @@ export default function Signup() {
   };
   const handleBackButton = () => {
     if (formStep > 1) prevStep();
-    else router.push("/login");
+    else router.back();
   };
 
   const handleNextButton = () => {
