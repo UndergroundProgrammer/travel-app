@@ -7,15 +7,15 @@ export default function Login() {
   return (
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 mt-20 w-full relative text-slate-800">
-        <div className="font-medium flex gap-4">
+        <div className="font-medium flex mb-8 gap-4">
           <button onClick={() => router.back()}>
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
           </button>
-          <span>Login</span>
+          <span>Edit</span>
         </div>
 
         <h1 className="text-3xl font-bold text-center capitalize">
-          Edit {router.query.name}
+          {router.query.name}
         </h1>
         <div className="mb-12">
           <form>
@@ -25,7 +25,7 @@ export default function Login() {
                   htmlFor={router.query.name}
                   className="text-sm capitalize"
                 >
-                  {router.query.name}
+                  Old {router.query.name}
                 </label>
                 <div className="relative mb-6">
                   <input
