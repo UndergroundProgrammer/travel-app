@@ -3,7 +3,7 @@ import { ArrowSmallLeftIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRouter } from "next/router";
+
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
@@ -14,7 +14,7 @@ export default function Activitys() {
   const drafts = useSelector(({ users }) => users.draftPosts);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
-  const router = useRouter();
+
   const formatDate = (date) => {
     return new Date(date).toLocaleDateString("default", {
       month: "short",

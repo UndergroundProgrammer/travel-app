@@ -10,7 +10,9 @@ specifiers:
   dayjs: ^1.11.7
   eslint: 8.33.0
   eslint-config-next: 13.1.6
+  multiselect-react-dropdown: ^2.0.25
   next: 13.1.6
+  next-redux-saga: ^4.1.2
   next-redux-wrapper: ^8.1.0
   postcss: ^8.4.21
   react: 18.2.0
@@ -19,11 +21,12 @@ specifiers:
   react-redux: ^8.0.5
   react-tailwindcss-datepicker: ^1.4.2
   react-toastify: ^9.1.1
+  redux: ^4.2.0
   redux-devtools-extension: ^2.13.9
   redux-logger: ^3.0.6
   redux-persist: ^6.0.0
   redux-saga: ^1.2.1
-  reselect: ^4.1.6
+  swiper: ^9.0.3
   tailwindcss: ^3.2.4
 
 dependencies:
@@ -35,19 +38,22 @@ dependencies:
   dayjs: 1.11.7
   eslint: 8.33.0
   eslint-config-next: 13.1.6_eslint@8.33.0
+  multiselect-react-dropdown: 2.0.25_react@18.2.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+  next-redux-saga: 4.1.2_redux-saga@1.2.2
   next-redux-wrapper: 8.1.0_4rc3fhkizgzmqy7p7vghukrrdq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
-  react-redux: 8.0.5_biqbaboplfbrettd7655fr4n2y
+  react-redux: 8.0.5_egguyi6kvemdtrnkbl3bdoeaey
   react-tailwindcss-datepicker: 1.4.2_dayjs@1.11.7+react@18.2.0
   react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
-  redux-devtools-extension: 2.13.9
+  redux: 4.2.1
+  redux-devtools-extension: 2.13.9_redux@4.2.1
   redux-logger: 3.0.6
-  redux-persist: 6.0.0_react@18.2.0
+  redux-persist: 6.0.0_react@18.2.0+redux@4.2.1
   redux-saga: 1.2.2
-  reselect: 4.1.7
+  swiper: 9.0.3
 
 devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.21
@@ -2006,6 +2012,14 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: false
 
+  /multiselect-react-dropdown/2.0.25_react@18.2.0:
+    resolution: {integrity: sha512-z8kUSyBNOuV7vn4Dk35snzXWtIfTdSEEXhgDdLMvOmR+xJFx35vc1voUlSuOvrk3khb+hXC219Qs9szOvNm25Q==}
+    peerDependencies:
+      react: ^16.7.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -2013,6 +2027,14 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: false
+
+  /next-redux-saga/4.1.2_redux-saga@1.2.2:
+    resolution: {integrity: sha512-UEI/8bRObquIpHeHX1RuqOFBe2zhI2gTHLijBLiinOZrCbir18B4/lJpymrEoHHpel0iiZEwV4R6jeUWYv+Avw==}
+    peerDependencies:
+      redux-saga: 1.x
+    dependencies:
+      redux-saga: 1.2.2
     dev: false
 
   /next-redux-wrapper/8.1.0_4rc3fhkizgzmqy7p7vghukrrdq:
@@ -2024,7 +2046,7 @@ packages:
     dependencies:
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
-      react-redux: 8.0.5_biqbaboplfbrettd7655fr4n2y
+      react-redux: 8.0.5_egguyi6kvemdtrnkbl3bdoeaey
     dev: false
 
   /next/13.1.6_biqbaboplfbrettd7655fr4n2y:
@@ -2387,7 +2409,7 @@ packages:
     resolution: {integrity: sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==}
     dev: false
 
-  /react-redux/8.0.5_biqbaboplfbrettd7655fr4n2y:
+  /react-redux/8.0.5_egguyi6kvemdtrnkbl3bdoeaey:
     resolution: {integrity: sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -2415,6 +2437,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
+      redux: 4.2.1
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
@@ -2459,11 +2482,13 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /redux-devtools-extension/2.13.9:
+  /redux-devtools-extension/2.13.9_redux@4.2.1:
     resolution: {integrity: sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==}
     deprecated: Package moved to @redux-devtools/extension.
     peerDependencies:
       redux: ^3.1.0 || ^4.0.0
+    dependencies:
+      redux: 4.2.1
     dev: false
 
   /redux-logger/3.0.6:
@@ -2472,7 +2497,7 @@ packages:
       deep-diff: 0.3.8
     dev: false
 
-  /redux-persist/6.0.0_react@18.2.0:
+  /redux-persist/6.0.0_react@18.2.0+redux@4.2.1:
     resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
     peerDependencies:
       react: '>=16'
@@ -2482,6 +2507,7 @@ packages:
         optional: true
     dependencies:
       react: 18.2.0
+      redux: 4.2.1
     dev: false
 
   /redux-saga/1.2.2:
@@ -2512,10 +2538,6 @@ packages:
   /regexpp/3.2.0:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
-    dev: false
-
-  /reselect/4.1.7:
-    resolution: {integrity: sha512-Zu1xbUt3/OPwsXL46hvOOoQrap2azE7ZQbokq61BQfiXvhewsKDwhMeZjTX9sX0nvw1t/U5Audyn1I9P/m9z0A==}
     dev: false
 
   /resolve-from/4.0.0:
@@ -2617,6 +2639,10 @@ packages:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
 
+  /ssr-window/4.0.2:
+    resolution: {integrity: sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==}
+    dev: false
+
   /stop-iteration-iterator/1.0.0:
     resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}
     engines: {node: '>= 0.4'}
@@ -2704,6 +2730,13 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /swiper/9.0.3:
+    resolution: {integrity: sha512-hHYI6CeUHcDyv6IakzAQrUv6nS5BMRn6KOkui16nhtdgYBlWgUdlaMbcdT0o4RJxpwSktCTLgpBtCm+WwwVYRw==}
+    engines: {node: '>= 4.7.0'}
+    dependencies:
+      ssr-window: 4.0.2
+    dev: false
 
   /synckit/0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
