@@ -8,9 +8,12 @@ import {
   EyeSlashIcon,
   LockClosedIcon,
   InformationCircleIcon,
+  ArrowSmallLeftIcon,
 } from "@heroicons/react/24/solid";
 import { loginRequest } from "@/redux/auth/auth.actions";
 import { useDispatch } from "react-redux";
+import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
 export default function Login() {
   const styles = {
     "underline-link":
@@ -19,6 +22,7 @@ export default function Login() {
       "rounded-full border border-slate-300 hover:border-slate-500 focus:border-slate-500 p-4",
     "visibility-icon": "absolute w-6 h-6 right-5 top-5 fill-slate-400",
   };
+  const router = useRouter();
 
   const [loginData, setLoginData] = useState({});
   const [loggedIn, setIsLoggedIn] = useState(true);
@@ -45,6 +49,12 @@ export default function Login() {
   return (
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 mt-20 w-full relative text-slate-800">
+        <div className="font-medium flex gap-4">
+          <button onClick={() => router.back()}>
+            <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
+          </button>
+          <span>Login</span>
+        </div>
         {/* {loggedIn ? <SuccessAlert /> : <DangerAlert />} */}
         <h1 className="text-3xl font-bold text-center">Welcome</h1>
         <div className="mb-12">
@@ -158,6 +168,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <Navbar />
     </div>
   );
 }

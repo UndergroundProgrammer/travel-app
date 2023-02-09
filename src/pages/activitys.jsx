@@ -1,6 +1,8 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ArrowSmallLeftIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -29,10 +31,14 @@ export default function Activitys() {
     if (user) setUserData(user);
     console.log(user?.posts?.length === 0, user?.posts);
   }, [user]);
+  const router = useRouter();
   return (
     <div className="container max-w-md mx-auto flex items-center">
       <div className="m-5 mt-20 w-full  relative text-slate-800">
-        <div className="font-medium text-left mb-6">
+        <div className="font-medium flex gap-4">
+          <button onClick={() => router.back()}>
+            <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
+          </button>
           <span>My Trips</span>
         </div>
         {/* Not Logged In */}
