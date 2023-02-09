@@ -4,6 +4,7 @@ import {
   KeyIcon,
   MapPinIcon,
 } from "@heroicons/react/24/solid";
+import { Chip } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -93,6 +94,62 @@ export default function Profile() {
                 <span className="text-xs">Password</span>
                 <div className="flex items-center justify-between border-b border-b-gray-400">
                   <p className="py-4">Change Password</p>
+                  <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
+                </div>
+              </Link>
+            </div>
+            <h3 className="text-lg font-bold text-slate-600 my-2">
+              My Travels
+            </h3>
+            <div className="relative my-5">
+              <Link href={"/profile/edit?type=select&name=visited"}>
+                <span className="text-xs">{"Countries I've visited"}</span>
+                <div className="flex flex-wrap gap-1 items-center text-sm justify-between py-2 border-b border-b-gray-400">
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Spain
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    New Zealand
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Austria
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    UAE
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    USA
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Brazil
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Portugal
+                  </span>
+                  <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
+                </div>
+              </Link>
+            </div>
+            <div className="relative my-5">
+              <Link href={"/profile/edit?type=select&name=toVisit"}>
+                <span className="text-xs">{"Countries I want to visit"}</span>
+                <div className="flex flex-wrap gap-1 items-center text-sm justify-between py-2 border-b border-b-gray-400">
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Egypt
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Sweden
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Australia
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Papua New Guinea
+                  </span>
+                  <span className="rounded-full py-1 px-2 bg-blue-100 text-blue-800">
+                    Saudi Arabia
+                  </span>
+
                   <ChevronRightIcon className="w-4 h-4 stroke-blue-700" />
                 </div>
               </Link>
