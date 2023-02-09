@@ -7,11 +7,15 @@ import {
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    if (isLoggedIn) setLoggedIn(isLoggedIn);
+  }, []);
   const router = useRouter();
   return (
     <div className="container max-w-md fixed w-full p-5 text-slate-600 shadow-md bottom-0 bg-white">
@@ -28,7 +32,7 @@ export default function Navbar() {
           <span className="font-medium text-sm">Activitys</span>
         </Link>
         <Link
-          href={isLoggedIn ? "/post/create" : "/login"}
+          href={loggedIn ? "/post/create" : "/login"}
           className={router.pathname === "/" ? "active" : ""}
         >
           <PlusIcon className="w-8 h-8  mx-auto stroke-[3] stroke-blue-600 " />

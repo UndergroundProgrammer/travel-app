@@ -9,6 +9,8 @@ import {
   LockClosedIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
+import { loginRequest } from "@/redux/auth/auth.actions";
+import { useDispatch } from "react-redux";
 export default function Login() {
   const styles = {
     "underline-link":
@@ -20,7 +22,9 @@ export default function Login() {
 
   const [loginData, setLoginData] = useState({});
   const [loggedIn, setIsLoggedIn] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const dispatch = useDispatch();
   const handlePasswordVisibility = function () {
     setPasswordVisibility((prev) => !prev);
   };
@@ -28,8 +32,13 @@ export default function Login() {
     const { name, value } = e.target;
     setLoginData((prev) => ({ ...prev, [name]: value }));
   };
+  const handleLoading = () => {
+    setLoading(false);
+  };
   const handleLogin = function (e) {
     e.preventDefault();
+    setLoading(true);
+    dispatch(loginRequest(loginData, handleLoading));
     console.log("You Entered:", loginData);
   };
 
