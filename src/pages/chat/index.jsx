@@ -42,7 +42,10 @@ export default function Chat() {
         {/* <Login /> */}
         <div className="my-4">
           {chats?.map((chat, key) => (
-            <Link href={`/chat/${encodeURIComponent(JSON.stringify(chat))}`}>
+            <Link
+              key={key}
+              href={`/chat/${encodeURIComponent(JSON.stringify(chat))}`}
+            >
               <Conversation
                 data={
                   chat.senderId.id == user?.id ? chat.receiverId : chat.senderId

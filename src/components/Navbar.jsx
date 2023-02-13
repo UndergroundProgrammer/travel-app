@@ -15,7 +15,7 @@ export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     if (isLoggedIn) setLoggedIn(isLoggedIn);
-  }, []);
+  }, [isLoggedIn]);
   const router = useRouter();
   return (
     <div className="container max-w-md fixed w-full p-5 text-slate-600 shadow-md bottom-0 bg-white">
