@@ -6,6 +6,7 @@ const routes = {
   forgetPassword: "/auth/forgot-password",
   resetPassword: "/auth/reset-password",
   googleAuth: "/auth/google-auth",
+  chnagePassword: "/auth/change-password",
 };
 
 class AuthenticationRepository {
@@ -63,6 +64,14 @@ class AuthenticationRepository {
       await Repository.get(
         `${baseUrl}${routes.googleAuth}?userType=${payload.userType}`
       );
+    } catch (error) {
+      console.log(error);
+      throw getError(error);
+    }
+  }
+  async changePassword(payload) {
+    try {
+      await Repository.post(`${baseUrl}${routes.chnagePassword}`, payload);
     } catch (error) {
       console.log(error);
       throw getError(error);

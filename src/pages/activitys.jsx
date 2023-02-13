@@ -6,22 +6,16 @@ import { useRouter } from "next/router";
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { formatDate } from "../components/DateFormat";
 import Navbar from "../components/Navbar";
 import Login from "./login";
 
 export default function Activitys() {
-  const user = useSelector(({ auth }) => auth.user);
+  const { user, isLoggedIn } = useSelector(({ auth }) => auth);
   const drafts = useSelector(({ users }) => users.draftPosts);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString("default", {
-      month: "short",
-      day: "2-digit",
-      year: "numeric",
-    });
-  };
   const handleNav = (post, draft, key) => {
     let newPost = { ...post, ["draft"]: draft, ["index"]: key };
     localStorage.setItem("postData", JSON.stringify(newPost));
@@ -74,7 +68,7 @@ export default function Activitys() {
                 <div className="flex items-center justify-between gap-2 shadow-lg p-2">
                   <div className="self-start flex gap-2">
                     <Image
-                      src={post.pictures[0]}
+                      src={post?.pictures[0]}
                       width={100}
                       height={50}
                       className="rounded-lg self-start object-cover "
@@ -82,7 +76,7 @@ export default function Activitys() {
                     />
                     <div>
                       <h6 className="text-gray-400 text-sm">
-                        {formatDate(post.startDate)}
+                        {formatDate(post?.startDate)}
                       </h6>
                       <h4 className="text-base my-1">{post.title}</h4>
                       <span className="text-xs p-1 rounded-sm font-medium bg-green-100 text-green-800">
@@ -107,7 +101,7 @@ export default function Activitys() {
             <div className="flex items-center justify-between gap-2 shadow-lg p-2">
               <div className="self-start flex gap-2">
                 <Image
-                  src={post.pictures[0]}
+                  src={post?.pictures[0]}
                   width={50}
                   height={50}
                   className="rounded-lg self-start object-cover aspect-square"
@@ -115,7 +109,7 @@ export default function Activitys() {
                 />
                 <div>
                   <h6 className="text-gray-400 text-sm">
-                    {formatDate(post.startDate)}
+                    {formatDate(post?.startDate)}
                   </h6>
                   <h4 className="text-base my-1">{post.title}</h4>
                   <span className="text-xs p-1 rounded-sm font-medium bg-red-100 text-red-800">

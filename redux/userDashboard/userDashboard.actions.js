@@ -8,7 +8,7 @@ export function updateUserProfilePic(payload, userId, callback) {
   };
 }
 
-export function updateUserProfile(payload, userId, callback) {
+export function updateUserProfileRequest(payload, userId, callback) {
   return {
     type: userDashboardActionTypes.UPDATE_PROFILE_REQUEST,
     payload,

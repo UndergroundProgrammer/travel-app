@@ -67,14 +67,22 @@ function* loginSaga(action) {
 
 function* logOutSaga(action) {
   try {
-    console.log(action.payload);
-    yield call(AuthService.logout, action.payload);
     localStorage.removeItem(`user_accessToken`);
-    localStorage.removeItem(`user_refreshToken`);
     alert.showSuccessAlert("you are logged out successfully!!!");
     yield Router.replace("/login");
-    socket.emit("forceDisconnect", action.payload);
+    //socket.emit("forceDisconnect", action.payload);
     yield put(logOutSuccess());
+  } catch (err) {
+    console.log(err);
+    alert.showErrorAlert(err);
+  }
+}
+
+function* changePasswordSaga(action) {
+  try {
+    const result = yield call(AuthService.changePassword, action.payload);
+    alert.showSuccessAlert("Your password has been changed successfully!!!");
+    Router.replace("/profile");
   } catch (err) {
     console.log(err);
     alert.showErrorAlert(err);
@@ -155,4 +163,7 @@ export default function* rootSaga() {
   yield all([takeLatest(actionTypes.RESETPASSWORD_REQUEST, resetPasswordSaga)]);
   yield all([takeLatest(actionTypes.VERIFY_EMAIL, verifyEmailSaga)]);
   yield all([takeLatest(actionTypes.GOOGLE_AUTH, googleAuthSaga)]);
+  yield all([
+    takeLatest(actionTypes.CHANGE_PASSWORD_REQUEST, changePasswordSaga),
+  ]);
 }

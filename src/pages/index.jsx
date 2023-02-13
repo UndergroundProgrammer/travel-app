@@ -10,12 +10,31 @@ import {
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import userDashboardRepository from "@/repositories/userDashboardRepository";
+import { formatDate } from "../components/DateFormat";
 
 export default function Home() {
   const router = useRouter();
+  const [latestPosts, setLatestPosts] = useState([]);
+  const getLatestPosts = async () => {
+    try {
+      const { result } = await userDashboardRepository.latestPosts();
+      console.log(result.results);
+      setLatestPosts(result.results);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleNav = (post) => {
+    localStorage.setItem("tripDetail", JSON.stringify(post));
+    router.push("/tripdetails");
+  };
+  useEffect(() => {
+    getLatestPosts();
+  }, []);
   return (
     <>
       <Head>
@@ -105,54 +124,38 @@ export default function Home() {
                 </button>
               </div>
               <div className="w-full grid grid-cols-2 gap-4">
-                <div className="relative min-w-[130px] rounded-md shadow-md">
-                  <Image
-                    src={"/images/hunza.jpg"}
-                    alt="Place"
-                    width={100}
-                    height={100}
-                    className="rounded-t-md w-full h-20 object-cover shadow-md"
-                  />
-                  <div className="flex justify-between mx-1">
-                    <div className="flex items-center my-1">
-                      <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                      <span className="text-xs">Iceland</span>
+                {latestPosts.map((post, key) => (
+                  <div
+                    key={key}
+                    className="relative min-w-[130px] rounded-md shadow-md"
+                    onClick={() => handleNav(post)}
+                  >
+                    <Image
+                      src={post.pictures[0]}
+                      alt="Place"
+                      width={100}
+                      height={100}
+                      className="rounded-t-md w-full h-20 object-cover shadow-md"
+                    />
+                    <div className="flex justify-between mx-1">
+                      <div className="flex items-center my-1">
+                        <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                        <span className="text-xs">{post.location}</span>
+                      </div>
+                      <div className="flex items-center my-1">
+                        <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
+                        <span className="text-xs">
+                          {formatDate(post.startDate)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center my-1">
-                      <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                      <span className="text-xs">02.02.2023</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-bold text-slate-600 m-2">
-                      Sking Adventure
-                    </h2>
-                  </div>
-                </div>
-                <div className="relative min-w-[130px] rounded-md shadow-md">
-                  <Image
-                    src={"/images/hunza.jpg"}
-                    alt="Place"
-                    width={100}
-                    height={100}
-                    className="rounded-t-md w-full h-20 object-cover shadow-md"
-                  />
-                  <div className="flex justify-between mx-1">
-                    <div className="flex items-center my-1">
-                      <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                      <span className="text-xs">Iceland</span>
-                    </div>
-                    <div className="flex items-center my-1">
-                      <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                      <span className="text-xs">02.02.2023</span>
+                    <div>
+                      <h2 className="text-lg font-bold text-slate-600 m-2">
+                        {post.title}
+                      </h2>
                     </div>
                   </div>
-                  <div>
-                    <h2 className="text-lg font-bold text-slate-600 m-2">
-                      Sking Adventure
-                    </h2>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             <Navbar />

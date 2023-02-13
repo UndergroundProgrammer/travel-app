@@ -8,6 +8,7 @@ const routes = {
   postTrip: "/posts/create_post",
   updateTrip: "/posts/update_post/",
   deletePost: "/posts/",
+  latestPosts: "/posts/query_posts?limit=5",
 };
 
 class UserDashboardRepository {
@@ -86,6 +87,15 @@ class UserDashboardRepository {
       const request = await Repository.delete(
         `${baseUrl}${routes.deletePost}${payload}`
       );
+      const { data } = request;
+      return { result: data };
+    } catch (error) {
+      throw getError(error);
+    }
+  }
+  async latestPosts() {
+    try {
+      const request = await Repository.get(`${baseUrl}${routes.latestPosts}`);
       const { data } = request;
       return { result: data };
     } catch (error) {

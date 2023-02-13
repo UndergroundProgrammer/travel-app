@@ -106,8 +106,10 @@ function* updateUserProfileSaga(action) {
       action.payload,
       action.userId
     );
-    action.callback();
+
     alert.showSuccessAlert("Your profile has been updated successfully!!!");
+    action.callback();
+    Router.push("/profile");
     yield put(userUpdateSuccess(result));
   } catch (error) {
     if (action && action.callback) {
@@ -216,7 +218,7 @@ export default function* rootSaga() {
     takeEvery(userDashboardActionTypes.POST_TRIP_REQUEST, postTripSaga),
     takeEvery(userDashboardActionTypes.UPDATE_TRIP_REQUEST, updateTripSaga),
     takeEvery(userDashboardActionTypes.DELETE_POST_REQUEST, deleteTripSaga),
-    // takeEvery(userDashboardActionTypes.GET_FREELANCERS_REQUEST, getFreelancers),
+
     // takeEvery(userDashboardActionTypes.SEND_PROPOSAL_REQUEST, sendProposal),
     // takeEvery(userDashboardActionTypes.SEND_MESSAGE_REQUEST, sendMessage),
   ]);

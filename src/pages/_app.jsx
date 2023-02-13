@@ -9,6 +9,7 @@ export default ReduxWrapper.withRedux(function App({ Component, pageProps }) {
         autoClose={2000}
         pauseOnHover={false}
         pauseOnFocusLoss={false}
+        hideProgressBar={true}
       />
       <Component {...pageProps} />
     </>

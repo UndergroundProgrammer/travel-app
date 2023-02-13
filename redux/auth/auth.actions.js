@@ -21,8 +21,8 @@ export function signUpSuccess() {
   return { type: actionTypes.SIGNUP_SUCCESS };
 }
 
-export function logOutRequest(payload) {
-  return { type: actionTypes.LOGOUT, payload };
+export function logOutRequest() {
+  return { type: actionTypes.LOGOUT };
 }
 
 export function logOutSuccess() {
@@ -61,4 +61,7 @@ export function userUpdateSuccess(result) {
 }
 export function googleAuthRequest(payload, callback) {
   return { type: actionTypes.GOOGLE_AUTH, payload, callback };
+}
+export function changePasword(payload) {
+  return { type: actionTypes.CHANGE_PASSWORD_REQUEST, payload };
 }
