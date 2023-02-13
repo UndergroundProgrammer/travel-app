@@ -160,7 +160,7 @@ function* sendMessage(action) {
   try {
     const { result } = yield call(chatsRepository.createChat, action.payload);
     action.callback();
-    Router.replace("/chats");
+    Router.push("/chat");
   } catch (error) {
     if (action && action.callback) {
       action.callback();
@@ -220,6 +220,6 @@ export default function* rootSaga() {
     takeEvery(userDashboardActionTypes.DELETE_POST_REQUEST, deleteTripSaga),
 
     // takeEvery(userDashboardActionTypes.SEND_PROPOSAL_REQUEST, sendProposal),
-    // takeEvery(userDashboardActionTypes.SEND_MESSAGE_REQUEST, sendMessage),
+    takeEvery(userDashboardActionTypes.SEND_MESSAGE_REQUEST, sendMessage),
   ]);
 }

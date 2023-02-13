@@ -20,6 +20,7 @@ function* userSignUpSaga(action) {
       AuthService.userRegister,
       action.payload
     );
+    
     alert.showSuccessAlert("You have been registered successfully!");
     Router.push("/login");
     action.callback();

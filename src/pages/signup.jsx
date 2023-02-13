@@ -53,6 +53,7 @@ export default function Signup() {
       birthDate: signupData.dob,
       username: signupData.username,
     };
+    console.log("signup called");
     setLoading(true);
     dispatch(userSignUpRequest(payload, handleLoading));
   };
@@ -76,7 +77,7 @@ export default function Signup() {
             </h1>
             <form className="overflow-hidden" onSubmit={handleFormSubmit}>
               <div
-                className={`w-full absolute top-20 translate-x-full transition duration-300 ease-in-out ${
+                className={`w-full absolute top-20 transition duration-300 ease-in-out ${
                   (formStep === 1 && "translate-x-0") ||
                   (formStep >= 1 && "-translate-x-full hidden")
                 }`}
@@ -115,7 +116,7 @@ export default function Signup() {
                 </div>
               </div>
               <div
-                className={`w-full absolute top-20 translate-x-full transition duration-300 ease-in-out ${
+                className={`w-full absolute top-20 transition duration-300 ease-in-out ${
                   (formStep === 2 && "translate-x-0") ||
                   (formStep >= 2 && "-translate-x-full hidden") ||
                   (formStep <= 2 && "translate-x-full hidden")
