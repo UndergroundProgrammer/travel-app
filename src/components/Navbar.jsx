@@ -1,3 +1,4 @@
+import socket from "@/socket";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import {
   EnvelopeIcon,
@@ -7,16 +8,26 @@ import {
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const isLoggedIn = useSelector(({ auth }) => auth.isLoggedIn);
   const [loggedIn, setLoggedIn] = useState(false);
+  const count = useRef(0);
+  const [notify, setNotify] = useState(0);
   useEffect(() => {
     if (isLoggedIn) setLoggedIn(isLoggedIn);
   }, [isLoggedIn]);
   const router = useRouter();
+  useEffect(() => {
+    socket.once("receive-message", (data) => {
+      console.log("notification");
+      setNotify((prev) => prev + 1);
+      count.current += 1;
+    });
+    setNotify(count.current);
+  }, []);
   return (
     <div className="container max-w-md fixed w-full p-5 text-slate-600 shadow-md bottom-0 bg-white">
       <nav className="flex justify-between items-center text-center">
@@ -41,7 +52,12 @@ export default function Navbar() {
           href={"/chat"}
           className={router.pathname === "/chat" ? "active" : ""}
         >
-          <EnvelopeIcon className="w-6 h-6  mx-auto fill-slate-600" />
+          <div className="relative">
+            <EnvelopeIcon className="w-6 h-6  mx-auto fill-slate-600" />
+            {notify > 0 && (
+              <span className="absolute top-0 right-4 inline-flex items-center justify-center px-1 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full"></span>
+            )}
+          </div>
           <span className="font-medium text-sm">Messages</span>
         </Link>
         <Link

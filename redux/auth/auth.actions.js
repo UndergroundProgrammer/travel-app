@@ -25,8 +25,8 @@ export function logOutRequest() {
   return { type: actionTypes.LOGOUT };
 }
 
-export function logOutSuccess() {
-  return { type: actionTypes.LOGOUT_SUCCESS };
+export function logOutSuccess(payload) {
+  return { type: actionTypes.LOGOUT_SUCCESS, payload };
 }
 
 export function forgotpasswordrequests(payload, callback) {

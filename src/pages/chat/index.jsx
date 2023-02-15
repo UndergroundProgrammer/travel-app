@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 export default function Chat() {
   const user = useSelector(({ auth }) => auth.user);
   const [chats, setChats] = useState(null);
+  const [unreadCount, setUnread] = useState();
   const [currentChat, setCurrentChat] = useState(null);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function Chat() {
       try {
         const { result } = await chatsRepository.getUserChats(user.id);
         setChats(result);
+        console.log(result);
       } catch (error) {
         console.log(error);
       }
@@ -49,6 +51,11 @@ export default function Chat() {
               <Conversation
                 data={
                   chat.senderId.id == user?.id ? chat.receiverId : chat.senderId
+                }
+                unreadCount={
+                  chat.senderId.id == user?.id
+                    ? chat?.senderCount
+                    : chat?.receiverCount
                 }
               ></Conversation>
             </Link>

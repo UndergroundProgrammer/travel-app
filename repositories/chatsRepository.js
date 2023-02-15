@@ -6,6 +6,7 @@ const routes = {
   findUsersChat: "/chat/findChat/",
   createMessage: "/chat/createMessage",
   getMessages: "/chat/getMessages/",
+  setUnreadCount: "/chat/setUnreadCount",
 };
 
 class ChatsRepositiory {
@@ -62,6 +63,18 @@ class ChatsRepositiory {
     try {
       const request = await Repository.get(
         `${baseUrl}${routes.getMessages}${chatId}`
+      );
+      const { data } = request;
+      return { result: data };
+    } catch (error) {
+      throw getError(error);
+    }
+  }
+  async setUnreadCount(payload) {
+    try {
+      const request = await Repository.put(
+        `${baseUrl}${routes.setUnreadCount}`,
+        payload
       );
       const { data } = request;
       return { result: data };

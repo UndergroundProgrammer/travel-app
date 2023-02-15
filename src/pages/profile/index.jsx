@@ -37,7 +37,7 @@ export default function Profile() {
   };
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logOutRequest());
+    dispatch(logOutRequest(user?.id));
   };
   useEffect(() => {
     if (user) setUserData(user);

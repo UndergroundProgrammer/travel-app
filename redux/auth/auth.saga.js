@@ -71,7 +71,7 @@ function* logOutSaga(action) {
     localStorage.removeItem(`user_accessToken`);
     alert.showSuccessAlert("you are logged out successfully!!!");
     yield Router.replace("/login");
-    //socket.emit("forceDisconnect", action.payload);
+    socket.emit("forceDisconnect", action.payload);
     yield put(logOutSuccess());
   } catch (err) {
     console.log(err);
@@ -144,14 +144,7 @@ function* googleAuthSaga(action) {
 
   action.callback();
   alert.showSuccessAlert("you are logged in successfully!!!");
-
-  if (_user.userType == "freelancer") {
-    if (_user.isProfileCompleted) Router.push("/freelancer/dashboard");
-    else {
-      alert.showinfoAlert("Please complete your Profile!!!");
-      Router.push("/freelancer/sellerprofile");
-    }
-  } else Router.push("/buyer/dashboard");
+  Router.push("/");
 }
 
 export default function* rootSaga() {
