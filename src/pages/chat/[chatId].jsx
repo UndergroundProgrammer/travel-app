@@ -14,6 +14,7 @@ export default function MessageBoard() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [userData, setUserData] = useState();
+  const scroll = useRef();
   const handleSend = async (e) => {
     e.preventDefault();
     if (message !== "") {
@@ -103,10 +104,7 @@ export default function MessageBoard() {
     socket.once("receive-message", (data) => {
       setMessages([...messages, data]);
     });
-    console.log(
-      chatContainerRef.current.scrollTop,
-      chatContainerRef.current.scrollHeight
-    );
+    scroll?.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
   useEffect(() => {
     const handleBeforeHistoryBack = async () => {
@@ -157,7 +155,7 @@ export default function MessageBoard() {
             className="flex flex-col space-y-4 p-3 overflow-y-auto !mb-16 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
           >
             {messages?.map((message, key) => (
-              <div className="chat-message" key={key}>
+              <div className="chat-message" key={key} ref={scroll}>
                 <div
                   className={`flex items-end ${
                     message?.author != user?.id ? "justify-end" : ""

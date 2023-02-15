@@ -13,6 +13,7 @@ import actionTypes from "./auth.actionTypes";
 import { loginSuccess, logOutSuccess } from "./auth.actions";
 import { appName } from "../../repositories/genericRepository";
 import alert from "@/src/components/notifications/Alert";
+import socket from "@/socket";
 
 function* userSignUpSaga(action) {
   try {
