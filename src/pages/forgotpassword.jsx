@@ -1,20 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { DangerAlert, SuccessAlert } from "../components/Alert";
-import {
-  EnvelopeIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  LockClosedIcon,
-  InformationCircleIcon,
-  ArrowSmallLeftIcon,
-} from "@heroicons/react/24/solid";
-import {
-  forgotpasswordrequests,
-  googleAuthRequest,
-  loginRequest,
-} from "@/redux/auth/auth.actions";
+import { useState } from "react";
+import { EnvelopeIcon, ArrowSmallLeftIcon } from "@heroicons/react/24/solid";
+import { forgotpasswordrequests } from "@/redux/auth/auth.actions";
 import { useDispatch } from "react-redux";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
@@ -31,7 +17,6 @@ export default function Login() {
   const [loginData, setLoginData] = useState({});
   const [loggedIn, setIsLoggedIn] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
   const dispatch = useDispatch();
 
   const handleLoginData = function (e) {

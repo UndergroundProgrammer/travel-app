@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { DangerAlert, SuccessAlert } from "../components/Alert";
+import { useState } from "react";
+
 import {
   EnvelopeIcon,
   EyeIcon,
@@ -10,15 +8,11 @@ import {
   InformationCircleIcon,
   ArrowSmallLeftIcon,
 } from "@heroicons/react/24/solid";
-import {
-  googleAuthRequest,
-  loginRequest,
-  resetPasswordRequests,
-} from "@/redux/auth/auth.actions";
+import { resetPasswordRequests } from "@/redux/auth/auth.actions";
 import { useDispatch } from "react-redux";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
-export default function resetpassword() {
+export default function Resetpassword() {
   const styles = {
     "underline-link":
       "underline underline-offset-4 hover:text-slate-700 focus:text-slate-700",
