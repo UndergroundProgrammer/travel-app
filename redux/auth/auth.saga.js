@@ -135,7 +135,10 @@ function* googleAuthSaga(action) {
   let _tokens;
   let _user;
 
-  _tokens = action.payload.tokens;
+ 
+_tokens = {
+  accessToken: action.payload.tokens.access.token,
+};
 
   _user = action.payload.user;
 
