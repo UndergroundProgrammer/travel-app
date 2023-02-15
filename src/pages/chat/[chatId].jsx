@@ -158,7 +158,7 @@ export default function MessageBoard() {
               <div className="chat-message" key={key} ref={scroll}>
                 <div
                   className={`flex items-end ${
-                    message?.author != user?.id ? "justify-end" : ""
+                    message?.author == user?.id ? "justify-end" : ""
                   }`}
                 >
                   <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">

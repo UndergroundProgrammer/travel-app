@@ -23,7 +23,9 @@ export default function Activitys() {
   };
   useEffect(() => {
     if (user) setUserData(user);
-    console.log(user?.posts?.length === 0, user?.posts);
+      if (!isLoggedIn) {
+        router.push("/login");
+      }
   }, [user]);
   const router = useRouter();
   return (

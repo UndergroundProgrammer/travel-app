@@ -8,13 +8,15 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Chat() {
-  const user = useSelector(({ auth }) => auth.user);
+  const { user, isLoggedIn } = useSelector(({ auth }) => auth);
   const [chats, setChats] = useState(null);
   const [messages, setMessages] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const getChats = async () => {
@@ -28,6 +30,9 @@ export default function Chat() {
     };
 
     user && getChats();
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
   }, [user]);
 
   return (
