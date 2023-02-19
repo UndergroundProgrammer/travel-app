@@ -12,11 +12,36 @@ import Head from "next/head";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+
+import Datepicker from "react-tailwindcss-datepicker";
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import userDashboardRepository from "@/repositories/userDashboardRepository";
 import { formatDate } from "../components/DateFormat";
 
 export default function Home() {
+  let [isOpen, setIsOpen] = useState(true);
+  const [tripDate, setTripDate] = useState({
+    startDate: new Date(),
+    endDate: new Date().setDate(new Date().getDate() + 1),
+  });
+  const handleDateChange = (newDate) => {
+    setTripDate(newDate);
+  };
+
+  const handleFindTrip = () => {
+    // Find Trip Function goes here...
+    setIsOpen(false);
+  };
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
   const router = useRouter();
   const [latestPosts, setLatestPosts] = useState([]);
   const getLatestPosts = async () => {
@@ -57,13 +82,12 @@ export default function Home() {
                 <div className="absolute inset-y-0 left-0 flex items-center ml-4">
                   <MagnifyingGlassIcon className="w-5 h-5 fill-slate-400" />
                 </div>
-                <input
-                  type="text"
-                  id="search"
-                  name="search"
-                  className={`bg-slate-50 border text-gray-900 rounded-full  block w-full pl-10 p-3 shadow placeholder:text-base placeholder:text-gray-500 focus:outline-none`}
-                  placeholder="Search for trip"
-                />
+                <button
+                  className={`bg-slate-50 border text-gray-900 rounded-full text-start cursor-text  block w-full pl-10 p-3 shadow focus:outline-none`}
+                  onClick={openModal}
+                >
+                  Search for trip
+                </button>
               </div>
             </div>
 
@@ -132,6 +156,7 @@ export default function Home() {
                   >
                     <Image
                       src={post.pictures[0]}
+
                       alt="Place"
                       width={100}
                       height={100}
@@ -140,6 +165,7 @@ export default function Home() {
                     <div className="flex justify-between mx-1">
                       <div className="flex items-center my-1">
                         <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
+
                         <span className="text-xs">{post.location}</span>
                       </div>
                       <div className="flex items-center my-1">
@@ -156,11 +182,101 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
+
               </div>
             </div>
             <Navbar />
           </div>
         </div>
+        {/* Search Dialog */}
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed mx-auto inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-md transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                      Find Trip
+                    </Dialog.Title>
+                    <div className="mt-2">
+                      <div className="relative mb-3 pb-3 border-b border-b-gray-300">
+                        <div className="absolute inset-y-0  -top-2 left-0 flex items-center ml-4">
+                          <MagnifyingGlassIcon className="w-5 h-5 fill-slate-400" />
+                        </div>
+                        <input
+                          type="text"
+                          id="location"
+                          name="location"
+                          className={`bg-slate-50 border text-gray-900 rounded-full text-start cursor-text  block w-full pl-10 p-3 shadow focus:outline-none`}
+                          placeholder="Search for trip"
+                          required
+                        />
+                        {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
+                      </div>
+                      <div className="relative mb-3 pb-3 border-b border-b-gray-300">
+                        <Datepicker
+                          primaryColor={"blue"}
+                          value={tripDate}
+                          useRange={false}
+                          startFrom={new Date(Date.now())}
+                          minDate={new Date(Date.now())}
+                          separator={"to"}
+                          placeholder="timeframe"
+                          inputClassName={
+                            "dark:bg-slate-50 dark:text-slate-800"
+                          }
+                          displayFormat={"DD.MM.YYYY"}
+                          onChange={handleDateChange}
+                        />
+                        {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 mt-4">
+                      <button
+                        type="button"
+                        className="w-1/2 inline-flex justify-center shadow rounded-full border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={closeModal}
+                      >
+                        Clear
+                      </button>
+                      <button
+                        type="button"
+                        className="w-1/2 inline-flex justify-center shadow rounded-full border border-transparent bg-blue-700 px-4 py-2 text-sm font-medium text-gray-100 hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={handleFindTrip}
+                      >
+                        Find Trip
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
       </main>
     </>
   );

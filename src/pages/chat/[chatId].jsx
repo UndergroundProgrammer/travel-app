@@ -154,6 +154,7 @@ export default function MessageBoard() {
             id="messages"
             className="flex flex-col space-y-4 p-3 overflow-y-auto !mb-16 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
           >
+
             {messages?.map((message, key) => (
               <div className="chat-message" key={key} ref={scroll}>
                 <div
@@ -176,6 +177,7 @@ export default function MessageBoard() {
                         </span>
                       </span>
                     </div>
+
                   </div>
                 </div>
               </div>
