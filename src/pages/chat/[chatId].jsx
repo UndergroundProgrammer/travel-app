@@ -9,6 +9,7 @@ import { formatDate } from "@/src/components/DateFormat";
 import alert from "@/src/components/notifications/Alert";
 export default function MessageBoard() {
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const messageField = useRef();
   const user = useSelector(({ auth }) => auth.user);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -19,28 +20,30 @@ export default function MessageBoard() {
   const scroll = useRef();
   const handleSend = async (e) => {
     e.preventDefault();
-setLoading(true);
-if (message !== "") {
-  const messageObj = {
-    chatId: chat.id,
-    messageBody: { author: user?.id, message, time: new Date() },
-  };
-  try {
-    const { result } = await chatsRepository.createMessage(messageObj);
-    socket.emit(
-      "send-message",
-      userData?.id,
-      chat?.id,
-      chat?.senderId?.id == user?.id ? "receiver" : "sender",
-      result
-    );
-    setMessages((list) => [...list, result]);
-    setMessage("");
-  } catch (error) {
-    alert.showErrorAlert("Something went wrong try again or refresh the page");
-  }
-  setLoading(false);
-}
+    setLoading(true);
+    if (message !== "") {
+      const messageObj = {
+        chatId: chat.id,
+        messageBody: { author: user?.id, message, time: new Date() },
+      };
+      try {
+        const { result } = await chatsRepository.createMessage(messageObj);
+        socket.emit(
+          "send-message",
+          userData?.id,
+          chat?.id,
+          chat?.senderId?.id == user?.id ? "receiver" : "sender",
+          result
+        );
+        setMessages((list) => [...list, result]);
+        setMessage("");
+      } catch (error) {
+        alert.showErrorAlert(
+          "Something went wrong try again or refresh the page"
+        );
+      }
+      setLoading(false);
+    }
   };
   function checkOnlineStatus(chat) {
     const chatmember =
@@ -108,6 +111,7 @@ if (message !== "") {
       setMessages([...messages, data]);
     });
     scroll?.current?.scrollIntoView({ behavior: "smooth" });
+    messageField?.current.focus();
   }, [messages]);
   useEffect(() => {
     const handleBeforeHistoryBack = async () => {
@@ -195,13 +199,12 @@ if (message !== "") {
               value={message}
               placeholder="Write your message!"
               onChange={(e) => setMessage(e.target.value)}
-              onBlur={() => {}}
+              ref={messageField}
               className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 p-5 bg-gray-200 rounded-full py-3"
             />
             <div className="absolute right-0 items-center inset-y-0 flex">
               <button
                 disabled={loading}
-                style={{ pointerEvents: "all" }}
                 type="submit"
                 className="inline-flex items-center justify-center rounded-full px-3  py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
               >
