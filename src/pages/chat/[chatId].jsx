@@ -195,6 +195,7 @@ if (message !== "") {
               value={message}
               placeholder="Write your message!"
               onChange={(e) => setMessage(e.target.value)}
+              onBlur={() => {}}
               className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 p-5 bg-gray-200 rounded-full py-3"
             />
             <div className="absolute right-0 items-center inset-y-0 flex">
