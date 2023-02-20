@@ -20,6 +20,7 @@ export default function MessageBoard() {
   const scroll = useRef();
   const handleSend = async (e) => {
     e.preventDefault();
+        messageField?.current.focus();
     setLoading(true);
     if (message !== "") {
       const messageObj = {
@@ -111,7 +112,7 @@ export default function MessageBoard() {
       setMessages([...messages, data]);
     });
     scroll?.current?.scrollIntoView({ behavior: "smooth" });
-    messageField?.current.focus();
+
   }, [messages]);
   useEffect(() => {
     const handleBeforeHistoryBack = async () => {
