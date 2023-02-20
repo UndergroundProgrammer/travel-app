@@ -124,11 +124,11 @@ export default function Login() {
               />
               {/* <InformationCircleIcon className="w-5 h-5 absolute right-12 top-5 fill-red-600" /> */}
               {passwordVisibility ? (
-                <button onClick={handlePasswordVisibility}>
+                <button type="button" onClick={handlePasswordVisibility}>
                   <EyeSlashIcon className={styles["visibility-icon"]} />
                 </button>
               ) : (
-                <button onClick={handlePasswordVisibility}>
+                <button type="button" onClick={handlePasswordVisibility}>
                   <EyeIcon className={styles["visibility-icon"]} />
                 </button>
               )}
@@ -137,6 +137,7 @@ export default function Login() {
               <Link href="/forgotpassword">Forgot your password?</Link>
             </div>
             <button
+              type="submit"
               disabled={loginData?.email && loginData?.password ? false : true}
               className={`btn-primary mb-6 ${
                 loginData?.email && loginData?.password
