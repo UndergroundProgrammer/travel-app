@@ -19,29 +19,28 @@ export default function MessageBoard() {
   const scroll = useRef();
   const handleSend = async (e) => {
     e.preventDefault();
-
-    if (message !== "") {
-      const messageObj = {
-        chatId: chat.id,
-        messageBody: { author: user?.id, message, time: new Date() },
-      };
-      try {
-        const { result } = await chatsRepository.createMessage(messageObj);
-        socket.emit(
-          "send-message",
-          userData?.id,
-          chat?.id,
-          chat?.senderId?.id == user?.id ? "receiver" : "sender",
-          result
-        );
-        setMessages((list) => [...list, result]);
-        setMessage("");
-      } catch (error) {
-        alert.showErrorAlert(
-          "Something went wrong try again or refresh the page"
-        );
-      }
-    }
+setLoading(true);
+if (message !== "") {
+  const messageObj = {
+    chatId: chat.id,
+    messageBody: { author: user?.id, message, time: new Date() },
+  };
+  try {
+    const { result } = await chatsRepository.createMessage(messageObj);
+    socket.emit(
+      "send-message",
+      userData?.id,
+      chat?.id,
+      chat?.senderId?.id == user?.id ? "receiver" : "sender",
+      result
+    );
+    setMessages((list) => [...list, result]);
+    setMessage("");
+  } catch (error) {
+    alert.showErrorAlert("Something went wrong try again or refresh the page");
+  }
+  setLoading(false);
+}
   };
   function checkOnlineStatus(chat) {
     const chatmember =
