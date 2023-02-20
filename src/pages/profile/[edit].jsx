@@ -27,8 +27,7 @@ export default function Login() {
 
   const updateProfile = (e) => {
     e.preventDefault();
-    console.log("called from updateProfile", data);
-    console.log(data.newPass !== data.confirmNewPass);
+
     if (router.query.name === "password") {
       if (data.newPass !== data.confirmNewPass) {
         setErr(true);
@@ -59,7 +58,11 @@ export default function Login() {
         </div>
 
         <h1 className="text-3xl font-bold text-center capitalize">
-          {router.query.name}
+          {router.query.type == "select"
+            ? router.query.name == "visitedCountries"
+              ? "Visted Countries"
+              : "Want To Visit"
+            : router.query.name}
         </h1>
         <div className="mb-12">
           <form onSubmit={updateProfile}>
@@ -125,12 +128,17 @@ export default function Login() {
                   htmlFor={router.query.name}
                   className="text-sm capitalize"
                 >
-                  {router.query.name}
+                  {router.query.name == "visitedCountries"
+                    ? "Visted Countries"
+                    : "Want To Visit"}
                 </label>
                 <div className="relative mb-6">
                   <Multiselect
                     options={countries}
                     displayValue="name"
+                    onRemove={(val) =>
+                      handleData("", true, router.query.name, val)
+                    }
                     selectedValues={data[router.query.name]}
                     isObject={false}
                     onSelect={(val) =>
