@@ -6,9 +6,22 @@ import {
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { formatDate } from "../components/DateFormat";
 import Navbar from "../components/Navbar";
 
 export default function SearchResults() {
+  const result = useSelector(({ users }) => users.searchPosts);
+  const router = useRouter();
+  const handleNav = (post) => {
+    localStorage.setItem("tripDetail", JSON.stringify(post));
+    router.push("/tripdetails");
+  };
+  useEffect(() => {
+    console.log(result);
+  }, [result]);
   return (
     <div className="container max-w-md mx-auto flex items-center overflow-hidden text-slate-800">
       <div className="w-full relative">
@@ -35,10 +48,14 @@ export default function SearchResults() {
 
         <div className="relative m-5">
           <div className="w-full grid grid-cols-2 gap-4">
-            <Link href={"/tripDetails"}>
-              <div className="relative py-2 min-w-[130px] rounded-md shadow-md">
+            {result?.results?.map((post, key) => (
+              <div
+                key={key}
+                className="relative min-w-[130px] rounded-md shadow-md"
+                onClick={() => handleNav(post)}
+              >
                 <Image
-                  src={"/images/hunza.jpg"}
+                  src={post.pictures[0]}
                   alt="Place"
                   width={100}
                   height={100}
@@ -47,98 +64,23 @@ export default function SearchResults() {
                 <div className="flex justify-between mx-1">
                   <div className="flex items-center my-1">
                     <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">Iceland</span>
+
+                    <span className="text-xs">{post.location}</span>
                   </div>
                   <div className="flex items-center my-1">
                     <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">02.02.2023</span>
+                    <span className="text-xs">
+                      {formatDate(post.startDate)}
+                    </span>
                   </div>
                 </div>
                 <div>
                   <h2 className="text-lg font-bold text-slate-600 m-2">
-                    Sking Adventure
+                    {post.title}
                   </h2>
                 </div>
               </div>
-            </Link>
-            <Link href={"/tripDetails"}>
-              <div className="relative py-2 min-w-[130px] rounded-md shadow-md">
-                <Image
-                  src={"/images/hunza.jpg"}
-                  alt="Place"
-                  width={100}
-                  height={100}
-                  className="rounded-t-md w-full h-20 object-cover shadow-md"
-                />
-                <div className="flex justify-between mx-1">
-                  <div className="flex items-center my-1">
-                    <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">Iceland</span>
-                  </div>
-                  <div className="flex items-center my-1">
-                    <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">02.02.2023</span>
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-slate-600 m-2">
-                    Sking Adventure
-                  </h2>
-                </div>
-              </div>
-            </Link>
-            <Link href={"/tripDetails"}>
-              <div className="relative py-2 min-w-[130px] rounded-md shadow-md">
-                <Image
-                  src={"/images/hunza.jpg"}
-                  alt="Place"
-                  width={100}
-                  height={100}
-                  className="rounded-t-md w-full h-20 object-cover shadow-md"
-                />
-                <div className="flex justify-between mx-1">
-                  <div className="flex items-center my-1">
-                    <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">Iceland</span>
-                  </div>
-                  <div className="flex items-center my-1">
-                    <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">02.02.2023</span>
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-slate-600 m-2">
-                    Sking Adventure
-                  </h2>
-                </div>
-              </div>
-            </Link>
-            <Link href={"/tripDetails"}>
-              <div className="relative py-2 min-w-[130px] rounded-md shadow-md">
-                <Image
-                  src={"/images/hunza.jpg"}
-                  alt="Place"
-                  width={100}
-                  height={100}
-                  className="rounded-t-md w-full h-20 object-cover shadow-md"
-                />
-                <div className="flex justify-between mx-1">
-                  <div className="flex items-center my-1">
-                    <MapPinIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">Iceland</span>
-                  </div>
-                  <div className="flex items-center my-1">
-                    <ClockIcon className="w-4 h-4 mr-1 fill-slate-700" />
-                    <span className="text-xs">02.02.2023</span>
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-slate-600 m-2">
-                    Sking Adventure
-                  </h2>
-                </div>
-              </div>
-            </Link>
+            ))}
           </div>
         </div>
       </div>

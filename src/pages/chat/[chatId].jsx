@@ -6,9 +6,11 @@ import { useSelector } from "react-redux";
 import socket from "@/socket";
 import chatsRepository from "@/repositories/chatsRepository";
 import { formatDate } from "@/src/components/DateFormat";
+import alert from "@/src/components/notifications/Alert";
 export default function MessageBoard() {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const user = useSelector(({ auth }) => auth.user);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [chat, setChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -17,6 +19,7 @@ export default function MessageBoard() {
   const scroll = useRef();
   const handleSend = async (e) => {
     e.preventDefault();
+
     if (message !== "") {
       const messageObj = {
         chatId: chat.id,
@@ -24,7 +27,6 @@ export default function MessageBoard() {
       };
       try {
         const { result } = await chatsRepository.createMessage(messageObj);
-        console.log(result);
         socket.emit(
           "send-message",
           userData?.id,
@@ -35,7 +37,9 @@ export default function MessageBoard() {
         setMessages((list) => [...list, result]);
         setMessage("");
       } catch (error) {
-        console.log(error);
+        alert.showErrorAlert(
+          "Something went wrong try again or refresh the page"
+        );
       }
     }
   };
@@ -154,7 +158,6 @@ export default function MessageBoard() {
             id="messages"
             className="flex flex-col space-y-4 p-3 overflow-y-auto !mb-16 scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
           >
-
             {messages?.map((message, key) => (
               <div className="chat-message" key={key} ref={scroll}>
                 <div
@@ -177,7 +180,6 @@ export default function MessageBoard() {
                         </span>
                       </span>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -187,31 +189,33 @@ export default function MessageBoard() {
       </div>
       {/* Input Message */}
       <div className="max-w-md fixed bg-white w-full bottom-0 border-t-2 border-gray-200 p-4">
-        <div className="relative flex">
-          <input
-            type="text"
-            value={message}
-            placeholder="Write your message!"
-            onChange={(e) => setMessage(e.target.value)}
-            className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 p-5 bg-gray-200 rounded-full py-3"
-          />
-          <div className="absolute right-0 items-center inset-y-0 flex">
-            <button
-              type="button"
-              onClick={handleSend}
-              className="inline-flex items-center justify-center rounded-full px-3  py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-6 w-6 ml-2 transform rotate-90"
+        <form onSubmit={handleSend}>
+          <div className="relative flex">
+            <input
+              type="text"
+              value={message}
+              placeholder="Write your message!"
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 p-5 bg-gray-200 rounded-full py-3"
+            />
+            <div className="absolute right-0 items-center inset-y-0 flex">
+              <button
+                disabled={loading}
+                type="submit"
+                className="inline-flex items-center justify-center rounded-full px-3  py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
               >
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="h-6 w-6 ml-2 transform rotate-90"
+                >
+                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

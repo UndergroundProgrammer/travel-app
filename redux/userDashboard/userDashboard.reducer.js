@@ -2,6 +2,7 @@ import Router from "next/router";
 import actionTypes from "./userDashboard.actionTypes";
 export const initState = {
   draftPosts: [],
+  searchPosts: [],
 };
 function FreelancerReducer(state = initState, action) {
   switch (action.type) {
@@ -21,6 +22,12 @@ function FreelancerReducer(state = initState, action) {
       return {
         ...state,
         ...{ draftPosts: drafts },
+      };
+    }
+    case actionTypes.SEARCH_POSTS_SUCCESS: {
+      return {
+        ...state,
+        ...{ searchPosts: action.payload },
       };
     }
     default:

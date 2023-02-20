@@ -9,6 +9,7 @@ const routes = {
   updateTrip: "/posts/update_post/",
   deletePost: "/posts/",
   latestPosts: "/posts/query_posts?limit=5",
+  searchPosts: "/posts/query_posts",
 };
 
 class UserDashboardRepository {
@@ -96,6 +97,22 @@ class UserDashboardRepository {
   async latestPosts() {
     try {
       const request = await Repository.get(`${baseUrl}${routes.latestPosts}`);
+      const { data } = request;
+      return { result: data };
+    } catch (error) {
+      throw getError(error);
+    }
+  }
+  async searchPosts(payload) {
+    const query =
+      payload != null
+        ? `?location=${payload.location}&startDate=${payload.startDate}&endDate=${payload.endDate}`
+        : "";
+    console.log(query);
+    try {
+      const request = await Repository.get(
+        `${baseUrl}${routes.searchPosts}${query}`
+      );
       const { data } = request;
       return { result: data };
     } catch (error) {

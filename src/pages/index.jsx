@@ -16,15 +16,20 @@ import { useRouter } from "next/router";
 import Datepicker from "react-tailwindcss-datepicker";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import userDashboardRepository from "@/repositories/userDashboardRepository";
 import { formatDate } from "../components/DateFormat";
+import { useDispatch } from "react-redux";
+import { searchPostsRequest } from "@/redux/userDashboard/userDashboard.actions";
+import { countries } from "../components/ContriesList";
 
 export default function Home() {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
+  const [location, setLocation] = useState("");
+  const dispatch = useDispatch();
   const [tripDate, setTripDate] = useState({
     startDate: new Date(),
-    endDate: new Date().setDate(new Date().getDate() + 1),
+    endDate: new Date(),
   });
   const handleDateChange = (newDate) => {
     setTripDate(newDate);
@@ -32,6 +37,14 @@ export default function Home() {
 
   const handleFindTrip = () => {
     // Find Trip Function goes here...
+    const payload = {
+      startDate: new Date(tripDate.startDate),
+      endDate: new Date(tripDate.endDate),
+      location: location,
+    };
+    console.log(payload);
+    dispatch(searchPostsRequest(payload, () => {}));
+    router.push("/search");
     setIsOpen(false);
   };
   function closeModal() {
@@ -156,7 +169,6 @@ export default function Home() {
                   >
                     <Image
                       src={post.pictures[0]}
-
                       alt="Place"
                       width={100}
                       height={100}
@@ -182,7 +194,6 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
-
               </div>
             </div>
             <Navbar />
@@ -232,8 +243,15 @@ export default function Home() {
                           name="location"
                           className={`bg-slate-50 border text-gray-900 rounded-full text-start cursor-text  block w-full pl-10 p-3 shadow focus:outline-none`}
                           placeholder="Search for trip"
+                          onChange={(e) => setLocation(e.target.value)}
                           required
+                          list="countries"
                         />
+                        <datalist id="countries">
+                          {countries.map((country) => (
+                            <option key={country} value={country} />
+                          ))}
+                        </datalist>
                         {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
                       </div>
                       <div className="relative mb-3 pb-3 border-b border-b-gray-300">
@@ -241,8 +259,6 @@ export default function Home() {
                           primaryColor={"blue"}
                           value={tripDate}
                           useRange={false}
-                          startFrom={new Date(Date.now())}
-                          minDate={new Date(Date.now())}
                           separator={"to"}
                           placeholder="timeframe"
                           inputClassName={

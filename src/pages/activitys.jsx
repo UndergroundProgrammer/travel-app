@@ -73,7 +73,7 @@ export default function Activitys() {
                       src={post?.pictures[0]}
                       width={100}
                       height={50}
-                      className="rounded-lg self-start object-cover "
+                      className="rounded-lg self-start object-cover aspect-square"
                       alt="Post Image"
                     />
                     <div>

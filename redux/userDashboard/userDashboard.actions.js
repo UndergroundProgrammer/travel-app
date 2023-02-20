@@ -84,3 +84,16 @@ export function remomvePostDraft(index) {
     index,
   };
 }
+export function searchPostsRequest(payload, callback) {
+  return {
+    type: userDashboardActionTypes.SEARCH_POSTS_REQUEST,
+    payload,
+    callback,
+  };
+}
+export function searchPosstSuccess(payload) {
+  return {
+    type: userDashboardActionTypes.SEARCH_POSTS_SUCCESS,
+    payload,
+  };
+}

@@ -8,6 +8,7 @@ import {
   postTripSuccess,
   remomvePostDraft,
   removeTripSuccess,
+  searchPosstSuccess,
   updateTripSuccess,
 } from "./userDashboard.actions";
 import userDashboardActionTypes from "./userDashboard.actionTypes";
@@ -171,32 +172,16 @@ function* sendMessage(action) {
     yield cancel();
   }
 }
-function* markProjectComplete(action) {
+function* searchPosts(action) {
   try {
     const { result } = yield call(
-      projectsRepository.markProjectComplete,
-      action.projectId
-    );
-    action.callback();
-    alert.showSuccessAlert("Project has been marked as completed");
-  } catch (error) {
-    if (action && action.callback) {
-      alert.showErrorAlert(error);
-    }
-  } finally {
-    yield cancel();
-  }
-}
-function* sendFeedback(action) {
-  try {
-    const { result } = yield call(
-      userDashboardRepository.sendFeedback,
-      action.userId,
+      userDashboardRepository.searchPosts,
       action.payload
     );
 
-    alert.showSuccessAlert("Your Review has been saved!");
     action.callback();
+    yield put(searchPosstSuccess(result));
+    console.log(result);
   } catch (error) {
     if (action && action.callback) {
       alert.showErrorAlert(error);
@@ -205,6 +190,7 @@ function* sendFeedback(action) {
     yield cancel();
   }
 }
+
 export default function* rootSaga() {
   yield all([
     takeEvery(
@@ -219,7 +205,7 @@ export default function* rootSaga() {
     takeEvery(userDashboardActionTypes.UPDATE_TRIP_REQUEST, updateTripSaga),
     takeEvery(userDashboardActionTypes.DELETE_POST_REQUEST, deleteTripSaga),
 
-    // takeEvery(userDashboardActionTypes.SEND_PROPOSAL_REQUEST, sendProposal),
+    takeEvery(userDashboardActionTypes.SEARCH_POSTS_REQUEST, searchPosts),
     takeEvery(userDashboardActionTypes.SEND_MESSAGE_REQUEST, sendMessage),
   ]);
 }

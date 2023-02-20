@@ -1,6 +1,6 @@
 import axios from "axios";
 import Router from "next/router";
-const baseDomain = "https://tripapp-backend.up.railway.app/api";
+const baseDomain = "http://localhost:4000/api";
 
 export const appName = "Getwork";
 
