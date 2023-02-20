@@ -201,6 +201,7 @@ if (message !== "") {
             <div className="absolute right-0 items-center inset-y-0 flex">
               <button
                 disabled={loading}
+                style={{ pointerEvents: "all" }}
                 type="submit"
                 className="inline-flex items-center justify-center rounded-full px-3  py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
               >
