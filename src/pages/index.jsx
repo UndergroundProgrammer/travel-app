@@ -245,13 +245,8 @@ export default function Home() {
                           placeholder="Search for trip"
                           onChange={(e) => setLocation(e.target.value)}
                           required
-                          list="countries"
                         />
-                        <datalist id="countries">
-                          {countries.map((country) => (
-                            <option key={country} value={country} />
-                          ))}
-                        </datalist>
+
                         {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
                       </div>
                       <div className="relative mb-3 pb-3 border-b border-b-gray-300">
