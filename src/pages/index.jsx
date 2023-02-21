@@ -41,8 +41,8 @@ export default function Home() {
   const handleFindTrip = () => {
     // Find Trip Function goes here...
     const payload = {
-      startDate: new Date(tripDate.startDate),
-      endDate: new Date(tripDate.endDate),
+      startDate: new Date(tripDate.startDate.replace(/-/g, "/")),
+      endDate: new Date(tripDate.endDate.replace(/-/g, "/")),
       location: location,
     };
     dispatch(clearSearchPosts());

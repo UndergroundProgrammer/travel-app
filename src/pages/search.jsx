@@ -38,8 +38,8 @@ export default function SearchResults() {
     // Find Trip Function goes here...
     setPosts([]);
     const payload = {
-      startDate: new Date(tripDate.startDate),
-      endDate: new Date(tripDate.endDate),
+      startDate: new Date(tripDate.startDate.replace(/-/g, "/")),
+      endDate: new Date(tripDate.endDate.replace(/-/g, "/")),
       location: location,
     };
     setLoading(true);
