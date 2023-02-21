@@ -75,6 +75,7 @@ export default function Home() {
   };
   const handleSeeAllPosts = (e) => {
     e.preventDefault();
+    dispatch(clearSearchPosts());
     dispatch(searchPostsRequest(null, () => {}));
     router.push("/search");
   };
