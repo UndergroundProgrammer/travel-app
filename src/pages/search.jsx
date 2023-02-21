@@ -127,7 +127,6 @@ export default function SearchResults() {
       setLoading(false);
       setPosts([]);
     }
-    console.log(result);
   }, [result]);
   return (
     <div className="container max-w-md mx-auto flex items-center overflow-hidden text-slate-800">

@@ -53,7 +53,7 @@ export default function Signup() {
       birthDate: signupData.dob,
       username: signupData.username,
     };
-    console.log("signup called");
+
     setLoading(true);
     dispatch(userSignUpRequest(payload, handleLoading));
   };

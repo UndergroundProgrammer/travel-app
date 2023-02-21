@@ -44,7 +44,6 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     dispatch(loginRequest(loginData, handleLoading));
-    console.log("You Entered:", loginData);
   };
   const handleGoogleSignUp = (e) => {
     e.preventDefault();
