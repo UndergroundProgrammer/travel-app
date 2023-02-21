@@ -97,3 +97,8 @@ export function searchPosstSuccess(payload) {
     payload,
   };
 }
+export function clearSearchPosts() {
+  return {
+    type: userDashboardActionTypes.CLEAR_POSTS,
+  };
+}

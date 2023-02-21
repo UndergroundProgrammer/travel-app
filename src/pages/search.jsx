@@ -123,6 +123,11 @@ export default function SearchResults() {
       setPosts(result.results);
       setFilteredPosts(result.results);
     }
+    if (result != null && result?.results?.length == 0) {
+      setLoading(false);
+      setPosts([]);
+    }
+    console.log(result);
   }, [result]);
   return (
     <div className="container max-w-md mx-auto flex items-center overflow-hidden text-slate-800">
@@ -150,12 +155,10 @@ export default function SearchResults() {
         {/* Filter Overlay */}
 
         <div className="relative m-5 ">
-          {posts?.length === 0 && !loading ? (
+          {posts?.length === 0 && !loading && (
             <div className="w-full text-center h-48 self-center text-xl">
               No posts found!
             </div>
-          ) : (
-            <></>
           )}
           <div className="w-full grid grid-cols-2 gap-2 mb-24">
             {loading &&

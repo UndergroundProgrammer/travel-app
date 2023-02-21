@@ -20,7 +20,10 @@ import { useEffect } from "react";
 import userDashboardRepository from "@/repositories/userDashboardRepository";
 import { formatDate } from "../components/DateFormat";
 import { useDispatch } from "react-redux";
-import { searchPostsRequest } from "@/redux/userDashboard/userDashboard.actions";
+import {
+  clearSearchPosts,
+  searchPostsRequest,
+} from "@/redux/userDashboard/userDashboard.actions";
 import { countries } from "../components/ContriesList";
 
 export default function Home() {
@@ -42,7 +45,7 @@ export default function Home() {
       endDate: new Date(tripDate.endDate),
       location: location,
     };
-
+    dispatch(clearSearchPosts());
     dispatch(searchPostsRequest(payload, () => {}));
     router.push("/search");
     setIsOpen(false);
