@@ -121,13 +121,13 @@ export default function Create() {
     if (user) {
       setUserData(user);
     }
-    console.log(user);
+
   }, [user]);
   useEffect(() => {
     const handleRouteChange = (url, { shallow }) => {
       if (unsavedChanges) {
         router.events.emit("routeChangeError");
-        console.log(Object.keys(tripData).length !== 0, tripData);
+
         openModal();
         throw "Abort route change. Please ignore this error.";
       }

@@ -10,8 +10,9 @@ const Conversation = ({ data, unreadCount, chatId }) => {
       const { result } = await chatsRepository.getMessages(chatId);
       setLatestMessage(result[result.length - 1].message);
     } catch (err) {
-      setLatestMessage("  ");
-      console.log(err);
+     console.clear();
+     setLatestMessage("  ");
+    
     }
   };
   useEffect(() => {

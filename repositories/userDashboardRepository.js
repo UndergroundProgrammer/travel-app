@@ -8,7 +8,7 @@ const routes = {
   postTrip: "/posts/create_post",
   updateTrip: "/posts/update_post/",
   deletePost: "/posts/",
-  latestPosts: "/posts/query_posts?limit=5",
+  latestPosts: "/posts/query_posts?limit=6&sortBy=createdAt:desc",
   searchPosts: "/posts/query_posts",
 };
 
@@ -104,11 +104,15 @@ class UserDashboardRepository {
     }
   }
   async searchPosts(payload) {
-    const query =
-      payload != null
-        ? `?location=${payload.location}&startDate=${payload.startDate}&endDate=${payload.endDate}`
-        : "";
-    console.log(query);
+    let query = "";
+    if (payload != null) {
+      if (payload.location == "")
+        query = `?startDate=${payload.startDate}&endDate=${payload.endDate}`;
+      else {
+        query = `?location=${payload.location}&startDate=${payload.startDate}&endDate=${payload.endDate}`;
+      }
+    } else query = "";
+
     try {
       const request = await Repository.get(
         `${baseUrl}${routes.searchPosts}${query}`

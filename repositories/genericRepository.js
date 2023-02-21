@@ -29,9 +29,8 @@ instance.interceptors.request.use(
 export default instance;
 
 export const getError = (error) => {
-  console.log(error);
+ 
   if (error.response) {
-    console.log(error?.response?.data?.code);
     if (error?.response?.data?.code == 401) {
       Router.push("/login");
     }

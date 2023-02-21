@@ -9,7 +9,7 @@ import storage from "./asyncStorage";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "users"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -28,7 +28,9 @@ export default function SearchResults() {
   const [loading, setLoading] = useState(true);
   const [experience, setExperience] = useState([]);
   const [isGirlOnly, setIsGirlOnly] = useState(false);
-  const [age, setAge] = useState("0-200");
+  const [minAge, setMinAge] = useState(0);
+  const [maxAge, setMaxAge] = useState(200);
+
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
 
@@ -67,32 +69,29 @@ export default function SearchResults() {
     }
   };
   const showFilter = () => {
-    console.log(experience, age, isGirlOnly);
-
-    const minAge = Number.parseInt(age.split("-")[0]);
-    const maxAge = Number.parseInt(age.split("-")[1]);
-
-    const filtered = filteredPosts.filter((post) => {
+    const filtered = filteredPosts?.filter((post) => {
       const age = calculateAge(new Date(post.userId.birthDate));
       const tripType = post.tripType;
-      const isGirlOnly = post.isGirlOnly;
-      console.log(age, tripType, isGirlOnly);
+      const GirlOnly = post.isGirlOnly;
+
       const ageFilter = age >= minAge && age <= maxAge;
-      const tripTypeFilter = experience.includes(tripType);
-      const isGirlOnlyFilter = isGirlOnly;
-      console.log(ageFilter, isGirlOnlyFilter, tripTypeFilter);
+
+      const tripTypeFilter = tripType ? experience.includes(tripType) : false;
+      const isGirlOnlyFilter = GirlOnly === isGirlOnly;
+
       // Return true if all filters pass, otherwise false
       return ageFilter && tripTypeFilter && isGirlOnlyFilter;
     });
     setPosts(filtered);
-    console.log(filtered);
+
     closeModal();
   };
 
   const clearFilter = () => {
     setPosts(filteredPosts);
     setExperience([]);
-    setAge("0-200");
+    setMinAge(0);
+    setMaxAge(200);
     setIsGirlOnly(false);
     closeModal();
   };
@@ -124,7 +123,6 @@ export default function SearchResults() {
       setPosts(result.results);
       setFilteredPosts(result.results);
     }
-    setLoading(false);
   }, [result]);
   return (
     <div className="container max-w-md mx-auto flex items-center overflow-hidden text-slate-800">
@@ -159,9 +157,9 @@ export default function SearchResults() {
           ) : (
             <></>
           )}
-          <div className="w-full grid grid-cols-2 gap-2">
+          <div className="w-full grid grid-cols-2 gap-2 mb-24">
             {loading &&
-              new Array(10).fill(0).map((key) => (
+              [1, 2, 3, 4, 5, 6, 7, 8].map((key) => (
                 <div
                   key={key}
                   className="relative min-w-[130px] rounded-md shadow-md"
@@ -192,7 +190,9 @@ export default function SearchResults() {
                   onClick={() => handleNav(post)}
                 >
                   <Image
-                    src={post.pictures[0]}
+                    src={
+                      post.pictures[0] ? post.pictures[0] : "/img/dummyBg.png"
+                    }
                     alt="Place"
                     width={100}
                     height={100}
@@ -353,17 +353,24 @@ export default function SearchResults() {
                           <h6 className="font-medium">Age</h6>
                           <h6 className="text-gray-600">Min - Max</h6>
                         </div>
-                        <div>
-                          <select
-                            name="ageGroup"
-                            id="ageGroup"
-                            className="rounded-md p-2 border text-gray-600"
-                            onChange={(e) => setAge(e.target.value)}
-                          >
-                            <option value="12-25">12 - 25</option>
-                            <option value="26-40"> 26 - 40</option>
-                            <option value="41-50"> 41 - 50</option>
-                          </select>
+                        <div className="flex gap-1">
+                          <input
+                            type="number"
+                            placeholder="Min Age"
+                            className="w-24 px-2 py-1 border rounded-md"
+                            value={minAge}
+                            onChange={(e) => setMinAge(e.target.value)}
+                          />
+                          <span className="flex items-center justify-center w-6 font-bold">
+                            -
+                          </span>
+                          <input
+                            type="number"
+                            placeholder="Max Age"
+                            className="w-24 px-2 py-1 border rounded-md"
+                            onChange={(e) => setMaxAge(e.target.value)}
+                            value={maxAge}
+                          />
                         </div>
                       </div>
                     </div>

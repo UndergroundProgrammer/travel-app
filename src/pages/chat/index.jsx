@@ -23,17 +23,17 @@ export default function Chat() {
       try {
         const { result } = await chatsRepository.getUserChats(user.id);
         setChats(result);
-        console.log(result);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
     user && getChats();
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("user_accessToken")) {
       router.push("/login");
     }
   }, [user]);
+
 
   return (
     <div className="container max-w-md mx-auto flex items-center">

@@ -40,8 +40,10 @@ export default function Profile() {
     dispatch(logOutRequest(user?.id));
   };
   useEffect(() => {
-    if (user) setUserData(user);
-    if (!isLoggedIn) {
+    if (user) {
+      setUserData(user);
+    }
+    if (!localStorage.getItem("user_accessToken")) {
       router.push("/login");
     }
   }, [user]);
@@ -57,12 +59,16 @@ export default function Profile() {
           </div>
           <div className="w-full rounded-lg p-8 mt-8 bg-blue-600 text-center">
             <Image
-              src={userData?.photoUrl}
+              alt="User Display Picture"
+              priority={true}
+              src={
+                !userData?.photoUrl ? "/img/dummyPhoto.png" : userData.photoUrl
+              }
               width={100}
               height={100}
-              alt="User Display Picture"
               className="rounded-full object-cover mx-auto aspect-square"
             />
+
             <div>
               <h4 className="font-medium text-lg text-white">
                 {userData.username}

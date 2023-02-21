@@ -181,7 +181,7 @@ function* searchPosts(action) {
 
     action.callback();
     yield put(searchPosstSuccess(result));
-    console.log(result);
+   
   } catch (error) {
     if (action && action.callback) {
       alert.showErrorAlert(error);

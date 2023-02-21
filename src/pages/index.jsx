@@ -42,7 +42,7 @@ export default function Home() {
       endDate: new Date(tripDate.endDate),
       location: location,
     };
-    console.log(payload);
+
     dispatch(searchPostsRequest(payload, () => {}));
     router.push("/search");
     setIsOpen(false);
@@ -60,7 +60,7 @@ export default function Home() {
   const getLatestPosts = async () => {
     try {
       const { result } = await userDashboardRepository.latestPosts();
-      console.log(result.results);
+
       setLatestPosts(result.results);
     } catch (err) {
       console.log(err);
@@ -69,6 +69,11 @@ export default function Home() {
   const handleNav = (post) => {
     localStorage.setItem("tripDetail", JSON.stringify(post));
     router.push("/tripdetails");
+  };
+  const handleSeeAllPosts = (e) => {
+    e.preventDefault();
+    dispatch(searchPostsRequest(null, () => {}));
+    router.push("/search");
   };
   useEffect(() => {
     getLatestPosts();
@@ -156,7 +161,10 @@ export default function Home() {
                 <h3 className="text-lg font-bold text-slate-600 my-2">
                   Latest Posts
                 </h3>
-                <button className="text-blue-500 text-sm font-medium">
+                <button
+                  onClick={handleSeeAllPosts}
+                  className="text-blue-500 text-sm font-medium"
+                >
                   See All
                 </button>
               </div>
@@ -168,7 +176,11 @@ export default function Home() {
                     onClick={() => handleNav(post)}
                   >
                     <Image
-                      src={post.pictures[0]}
+                      src={
+                        post?.pictures[0]
+                          ? post?.pictures[0]
+                          : "/img/dummyBg.png"
+                      }
                       alt="Place"
                       width={100}
                       height={100}

@@ -66,22 +66,30 @@ export default function PostDetails() {
             <ArrowSmallLeftIcon className="w-6 h-6 fill-slate-800" />
           </button>
         </div>
-        <Swiper
-          autoHeight
-          slidesPerView={1}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          {tripDetail?.pictures?.map((data, key) => (
-            <SwiperSlide key={key}>
+        <Swiper autoHeight slidesPerView={1}>
+          {tripDetail?.pictures?.length > 0 ? (
+            tripDetail?.pictures?.map((data, key) => (
+              <SwiperSlide key={key}>
+                <Image
+                  src={data}
+                  alt="Place"
+                  width={170}
+                  height={150}
+                  className=" shadow-md w-full h-72 aspect-square object-cover"
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+            <SwiperSlide>
               <Image
-                src={data}
+                src={"/img/dummyBg.png"}
                 alt="Place"
                 width={170}
                 height={150}
                 className=" shadow-md w-full h-72 aspect-square object-cover"
               />
             </SwiperSlide>
-          ))}
+          )}
         </Swiper>
       </div>
       {/* Trip Shallow Info */}
@@ -143,7 +151,11 @@ export default function PostDetails() {
           <Link href={"/tripmate"}>
             <div className=" flex gap-2">
               <Image
-                src={tripMate?.photoUrl}
+                src={
+                  tripMate?.photoUrl
+                    ? tripMate?.photoUrl
+                    : "/img/dummyPhoto.png"
+                }
                 width={80}
                 height={80}
                 className=" self-start object-cover rounded-full aspect-square"

@@ -22,10 +22,12 @@ export default function Activitys() {
     router.push("/post/edit");
   };
   useEffect(() => {
-    if (user) setUserData(user);
-      if (!isLoggedIn) {
-        router.push("/login");
-      }
+    if (user) {
+      setUserData(user);
+    }
+    if (!localStorage.getItem("user_accessToken")) {
+      router.push("/login");
+    }
   }, [user]);
   const router = useRouter();
   return (
@@ -103,16 +105,20 @@ export default function Activitys() {
             <div className="flex items-center justify-between gap-2 shadow-lg p-2">
               <div className="self-start flex gap-2">
                 <Image
-                  src={post?.pictures[0]}
-                  width={50}
+                  src={
+                    post?.pictures[0] ? post?.pictures[0] : "/img/dummyBg.png"
+                  }
+                  width={100}
                   height={50}
                   className="rounded-lg self-start object-cover aspect-square"
                   alt="Post Image"
                 />
                 <div>
-                  <h6 className="text-gray-400 text-sm">
-                    {formatDate(post?.startDate)}
-                  </h6>
+                  {post?.startDate && (
+                    <h6 className="text-gray-400 text-sm">
+                      {formatDate(post?.startDate)}
+                    </h6>
+                  )}
                   <h4 className="text-base my-1">{post.title}</h4>
                   <span className="text-xs p-1 rounded-sm font-medium bg-red-100 text-red-800">
                     Draft
