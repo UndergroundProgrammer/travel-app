@@ -18,9 +18,10 @@ import { formatDate } from "../components/DateFormat";
 import { calculateAge } from "../components/AgeCalculate";
 import { sendMessageRequest } from "@/redux/userDashboard/userDashboard.actions";
 import { useDispatch, useSelector } from "react-redux";
+import alert from "../components/notifications/Alert";
 
 export default function PostDetails() {
-  const user = useSelector(({ auth }) => auth.user);
+  const { user, isLoggedIn } = useSelector(({ auth }) => auth);
   const dispatch = useDispatch();
   const [isFavourite, setIsFavourite] = useState(false);
   const [tripDetail, setTripDetail] = useState({});
@@ -35,7 +36,13 @@ export default function PostDetails() {
       senderId: user?.id,
       receiverId: tripMate?.id,
     };
-
+    if (!isLoggedIn) {
+      alert.showErrorAlert(
+        "Please login in order to send message to this user"
+      );
+      router.push("/login");
+      return;
+    }
     if (payload.senderId === payload.receiverId) {
       alert.showErrorAlert("You couldn't send message to yourself");
       return;
