@@ -80,3 +80,11 @@ body {
   @apply !w-[100px] md:!w-auto
 }
 
+
+.react-dates input[type="text"] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
