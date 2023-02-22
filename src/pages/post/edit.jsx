@@ -141,7 +141,10 @@ export default function PID() {
                 startDate={tripDate.startDate}
                 endDate={tripDate.endDate}
                 focusedInput={focusedInput}
-                onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+                onFocusChange={(focusedInput) => {
+                  setFocusedInput(focusedInput);
+                  document.activeElement.blur();
+                }}
                 showDefaultInputIcon={true}
                 onDatesChange={handleDateChange}
                 numberOfMonths={1}
