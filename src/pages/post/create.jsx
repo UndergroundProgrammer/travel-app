@@ -9,7 +9,9 @@ import {
   ArrowSmallLeftIcon,
   CloudArrowUpIcon,
 } from "@heroicons/react/24/solid";
-
+import "react-dates/initialize";
+import { DateRangePicker, DayPickerRangeController } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useState, useEffect } from "react";
@@ -26,6 +28,7 @@ export default function Create() {
   const [girlsOnly, setGirlsOnly] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [focusedInput, setFocusedInput] = useState(null);
   const [tripDate, setTripDate] = useState({});
   const [unsavedChanges, setUnsaved] = useState(true);
   let [isOpen, setIsOpen] = useState(false);
@@ -40,7 +43,6 @@ export default function Create() {
     setIsOpen(true);
   }
   const handleDateChange = (newDate) => {
-    console.log(newDate);
     setTripDate(newDate);
   };
   const handleTripData = (e) => {
@@ -89,7 +91,7 @@ export default function Create() {
   const handleTripSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const picsData = await uploadImages();
+    const picsData = tripData.tripGallery && (await uploadImages());
     setUnsaved(false);
     const payload = {
       userId: user.id,
@@ -112,8 +114,8 @@ export default function Create() {
     setTripData({});
     setGirlsOnly(false);
     setTripDate({
-      startDate: new Date(),
-      endDate: new Date().setDate(new Date().getDate() + 1),
+      startDate: null,
+      endDate: null,
     });
     router.push("/activitys");
   };
@@ -121,7 +123,6 @@ export default function Create() {
     if (user) {
       setUserData(user);
     }
-
   }, [user]);
   useEffect(() => {
     const handleRouteChange = (url, { shallow }) => {
@@ -170,16 +171,20 @@ export default function Create() {
                 Trip Date
               </label>
               <div className="relative mb-3 pb-3 border-b border-b-gray-300">
-                <Datepicker
-                  primaryColor={"blue"}
-                  value={tripDate}
-                  startFrom={new Date(Date.now())}
-                  minDate={new Date(Date.now())}
-                  separator={"to"}
-                  placeholder="timeframe"
-                  inputClassName={"dark:bg-slate-50 dark:text-slate-800"}
-                  displayFormat={"DD.MM.YYYY"}
-                  onChange={handleDateChange}
+                <DateRangePicker
+                  required
+                  block={true}
+                  startDate={tripDate.startDate}
+                  endDate={tripDate.endDate}
+                  focusedInput={focusedInput}
+                  onFocusChange={(focusedInput) =>
+                    setFocusedInput(focusedInput)
+                  }
+                  showDefaultInputIcon={true}
+                  onDatesChange={handleDateChange}
+                  numberOfMonths={1}
+                  startDateId={"1"}
+                  endDateId={"2"}
                 />
                 {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
               </div>

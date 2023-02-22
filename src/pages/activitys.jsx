@@ -72,7 +72,11 @@ export default function Activitys() {
                 <div className="flex items-center justify-between gap-2 shadow-lg p-2">
                   <div className="self-start flex gap-2">
                     <Image
-                      src={post?.pictures[0]}
+                      src={
+                        post?.pictures[0]
+                          ? post?.pictures[0]
+                          : "/img/dummyBg.png"
+                      }
                       width={100}
                       height={50}
                       className="rounded-lg self-start object-cover aspect-square"

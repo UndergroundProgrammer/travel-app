@@ -5,7 +5,8 @@ import {
   MagnifyingGlassIcon,
   MapPinIcon,
 } from "@heroicons/react/24/solid";
-
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,6 +20,7 @@ import { Fragment, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { calculateAge } from "../components/AgeCalculate";
 import { searchPostsRequest } from "@/redux/userDashboard/userDashboard.actions";
+import { DateRangePicker } from "react-dates";
 
 export default function SearchResults() {
   const result = useSelector(({ users }) => users.searchPosts);
@@ -28,6 +30,7 @@ export default function SearchResults() {
   const [loading, setLoading] = useState(true);
   const [experience, setExperience] = useState([]);
   const [isGirlOnly, setIsGirlOnly] = useState(false);
+  const [focusedInput, setFocusedInput] = useState(null);
   const [minAge, setMinAge] = useState(0);
   const [maxAge, setMaxAge] = useState(200);
 
@@ -38,8 +41,8 @@ export default function SearchResults() {
     // Find Trip Function goes here...
     setPosts([]);
     const payload = {
-      startDate: new Date(tripDate.startDate.replace(/-/g, "/")),
-      endDate: new Date(tripDate.endDate.replace(/-/g, "/")),
+      startDate: tripDate.startDate._d,
+      endDate: tripDate.endDate._d,
       location: location,
     };
     setLoading(true);
@@ -111,8 +114,8 @@ export default function SearchResults() {
   }
 
   const [tripDate, setTripDate] = useState({
-    startDate: new Date(),
-    endDate: new Date().setDate(new Date().getDate() + 1),
+    startDate: null,
+    endDate: null,
   });
   const handleDateChange = (newDate) => {
     setTripDate(newDate);
@@ -452,16 +455,21 @@ export default function SearchResults() {
 
                       {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
                     </div>
-                    <div className="relative mb-3 pb-3 border-b border-b-gray-300">
-                      <Datepicker
-                        primaryColor={"blue"}
-                        value={tripDate}
-                        useRange={false}
-                        separator={"to"}
-                        placeholder="timeframe"
-                        inputClassName={"dark:bg-slate-50 dark:text-slate-800"}
-                        displayFormat={"DD.MM.YYYY"}
-                        onChange={handleDateChange}
+                    <div className="relative mb-3 pb-3 border-b border-b-gray-300 datePicker">
+                      <DateRangePicker
+                        block={true}
+                        startDate={tripDate.startDate}
+                        endDate={tripDate.endDate}
+                        focusedInput={focusedInput}
+                        onFocusChange={(focusedInput) =>
+                          setFocusedInput(focusedInput)
+                        }
+                        showDefaultInputIcon={true}
+                        onDatesChange={handleDateChange}
+                        numberOfMonths={1}
+                        isOutsideRange={() => false}
+                        startDateId={"1"}
+                        endDateId={"2"}
                       />
                       {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
                     </div>

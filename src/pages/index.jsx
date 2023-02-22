@@ -7,13 +7,15 @@ import {
   MapPinIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import { PlusIcon } from "@heroicons/react/24/outline";
+
 import Head from "next/head";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+import "react-dates/initialize";
+import { DateRangePicker, DayPickerRangeController } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
 
-import Datepicker from "react-tailwindcss-datepicker";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useEffect } from "react";
@@ -24,27 +26,27 @@ import {
   clearSearchPosts,
   searchPostsRequest,
 } from "@/redux/userDashboard/userDashboard.actions";
-import { countries } from "../components/ContriesList";
 
 export default function Home() {
   let [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useState("");
   const dispatch = useDispatch();
+  const [focusedInput, setFocusedInput] = useState(null);
   const [tripDate, setTripDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: null,
+    endDate: null,
   });
   const handleDateChange = (newDate) => {
     setTripDate(newDate);
   };
 
   const handleFindTrip = () => {
-    // Find Trip Function goes here...
     const payload = {
-      startDate: new Date(tripDate.startDate.replace(/-/g, "/")),
-      endDate: new Date(tripDate.endDate.replace(/-/g, "/")),
+      startDate: tripDate.startDate._d,
+      endDate: tripDate.endDate._d,
       location: location,
     };
+
     dispatch(clearSearchPosts());
     dispatch(searchPostsRequest(payload, () => {}));
     router.push("/search");
@@ -87,6 +89,7 @@ export default function Home() {
       <Head>
         <title>tripFriend</title>
         <meta name="description" content="z" />
+        <meta name="color-scheme" content="light"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -266,17 +269,20 @@ export default function Home() {
                         {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
                       </div>
                       <div className="relative mb-3 pb-3 border-b border-b-gray-300">
-                        <Datepicker
-                          primaryColor={"blue"}
-                          value={tripDate}
-                          useRange={false}
-                          separator={"to"}
-                          placeholder="timeframe"
-                          inputClassName={
-                            "dark:bg-slate-50 dark:text-slate-800"
+                        <DateRangePicker
+                          block={true}
+                          startDate={tripDate.startDate}
+                          endDate={tripDate.endDate}
+                          focusedInput={focusedInput}
+                          onFocusChange={(focusedInput) =>
+                            setFocusedInput(focusedInput)
                           }
-                          displayFormat={"DD.MM.YYYY"}
-                          onChange={handleDateChange}
+                          showDefaultInputIcon={true}
+                          onDatesChange={handleDateChange}
+                          numberOfMonths={1}
+                          isOutsideRange={() => false}
+                          startDateId={"1"}
+                          endDateId={"2"}
                         />
                         {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
                       </div>

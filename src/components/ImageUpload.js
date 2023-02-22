@@ -21,7 +21,7 @@ const uploadSingleImage = async (img, cb) => {
   ).then((res) => res.json());
   try {
     const response = await jsonData;
-    console.log(response);
+
     cb([response.secure_url], true);
   } catch (error) {
     alert.showErrorAlert(error);
@@ -48,7 +48,7 @@ const uploadMultiPleImage = async (imgs, cb) => {
     const data = response.reduce((acc, obj) => {
       return acc.concat(obj.secure_url);
     }, []);
-    console.log(data);
+
     cb(data, true);
   } catch (error) {
     cb(error, false);

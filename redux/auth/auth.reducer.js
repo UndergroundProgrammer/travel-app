@@ -29,7 +29,7 @@ function AuthReducer(state = initState, action) {
 
       state.user.posts.push(post);
       const updatedUser = state.user;
-      console.log(updatedUser);
+
       return {
         ...state,
         ...{ user: updatedUser },
@@ -40,7 +40,7 @@ function AuthReducer(state = initState, action) {
       const index = state.user.posts.findIndex((obj) => obj.id === post.id);
       state.user.posts.splice(index, 1, post);
       const updatedUser = state.user;
-      console.log(updatedUser);
+
       return {
         ...state,
         ...{ user: updatedUser },
@@ -51,7 +51,7 @@ function AuthReducer(state = initState, action) {
       const index = state.user.posts.findIndex((obj) => obj.id === post.id);
       state.user.posts.splice(index, 1);
       const updatedUser = state.user;
-      console.log(updatedUser);
+
       return {
         ...state,
         ...{ user: updatedUser },

@@ -12,10 +12,12 @@ import {
   ArrowSmallLeftIcon,
   CloudArrowUpIcon,
 } from "@heroicons/react/24/solid";
-
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { DateRangePicker, toMomentObject } from "react-dates";
 import { useDispatch } from "react-redux";
 import Datepicker from "react-tailwindcss-datepicker";
 export default function PID() {
@@ -24,10 +26,11 @@ export default function PID() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [delLoading, setDelLoading] = useState(false);
+  const [focusedInput, setFocusedInput] = useState(null);
   const dispatch = useDispatch();
   const [tripDate, setTripDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: null,
+    endDate: null,
   });
 
   const handleDateChange = (newDate) => {
@@ -70,12 +73,10 @@ export default function PID() {
       location: tripData.location,
       description: tripData.description,
       pictures: picsData ? picsData : tripData.pictures,
-      startDate: tripDate.startDate,
-      endDate: tripDate.endDate,
+      startDate: tripDate.startDate._d,
+      endDate: tripDate.endDate._d,
       isGirlOnly: girlsOnly,
     };
-
-    console.log(payload, tripData.draft);
 
     if (tripData.draft) {
       let updated = { ...payload, ["userId"]: tripData.userId };
@@ -87,7 +88,7 @@ export default function PID() {
   const handleDeletePost = (e) => {
     e.preventDefault();
     setDelLoading(true);
-    console.log(tripData.draft, tripData.index);
+
     tripData.draft
       ? dispatch(remomvePostDraft(tripData.index))
       : dispatch(removeTripRequest(tripData.id, handleDelLoading));
@@ -98,8 +99,8 @@ export default function PID() {
     setTripData(post);
     setTripDate({
       ...tripDate,
-      startDate: new Date(post.startDate),
-      endDate: new Date(post.endDate),
+      startDate: toMomentObject(new Date(post.startDate)),
+      endDate: toMomentObject(new Date(post.endDate)),
     });
   }, []);
 
@@ -133,17 +134,20 @@ export default function PID() {
             <label htmlFor="tripDates" className="text-sm">
               Trip Date
             </label>
-            <div className="relative mb-3 pb-3 border-b border-b-gray-300">
-              <Datepicker
-                primaryColor={"blue"}
-                value={tripDate}
-                startFrom={new Date(Date.now())}
-                minDate={new Date(Date.now())}
-                separator={"to"}
-                placeholder="timeframe"
-                inputClassName={"dark:bg-slate-50 dark:text-slate-800"}
-                displayFormat={"DD.MM.YYYY"}
-                onChange={handleDateChange}
+            <div className="relative mb-3 pb-3 border-b border-b-gray-300 datePicker">
+              <DateRangePicker
+                required
+                block={true}
+                startDate={tripDate.startDate}
+                endDate={tripDate.endDate}
+                focusedInput={focusedInput}
+                onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+                showDefaultInputIcon={true}
+                onDatesChange={handleDateChange}
+                numberOfMonths={1}
+                isOutsideRange={() => false}
+                startDateId={"1"}
+                endDateId={"2"}
               />
               {/* <InformationCircleIcon className="w-5 h-5 absolute right-5 top-5 fill-red-600" /> */}
             </div>
